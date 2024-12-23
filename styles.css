@@ -1,0 +1,54 @@
+:root {
+  --header-height: 80px;
+  --header-gap: 15px;
+  --border-radius: 6px;
+  --highlight: #ffffff;
+  --gradient-top: #fafafa;
+  --gradient-bottom: #f3f3f3;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+header {
+  display: flex;
+  justify-content: space-between; /* Space out the logo and the buttons */
+  align-items: center; /* Vertically center the items */
+  background-color: #f3f3f3;
+  padding-right: var(--header-gap);
+}
+#headerLogo {
+  display: inline-block;
+  width: auto;
+  height: var(--header-height);
+}
+#headerButtonsContainer {
+  display: flex;
+  gap: var(--header-gap);
+}
+.roundedRect {border-radius: var(--border-radius);}
+.shadedRect {
+    background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
+    box-shadow: inset 0 1px 0 var(--highlight), inset 0 -1px 0 #cccccc;
+    box-sizing: border-box;
+    border: 2px solid #000080;
+}
+.headerButton {
+  display: inline-block;
+  width: 160px;
+  height: calc(var(--header-height) - 2*var(--header-gap));
+}
+nav ul {
+  list-style: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+}
+nav li {
+  display: inline-block; /* Make list items display horizontally */
+  margin-right: 20px;
+}
+nav a {
+  text-decoration: none; /* Remove underline from links */
+  color: #0e6a7b; /* Example link color */
+}
