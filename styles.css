@@ -26,8 +26,7 @@ header {
 }
 #headerButtonsContainer {
   display: flex;
-  justify-content: flex-end;
-  margin-right: var(--header-gap);
+  justify-content: space-between;
 }
 .roundedRect {border-radius: var(--border-radius);}
 .shadedRect {
@@ -46,4 +45,6 @@ header {
   white-space: nowrap;
   font-size: calc(.2*var(--header-height));
   color: var(--navy-blue);
+  box-sizing: border-box;
+  margin-right: var(--header-gap);
 }
