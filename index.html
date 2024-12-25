@@ -8,8 +8,8 @@
 </head>
 <body>
   <script>
+    document.addEventListener('DOMContentLoaded', scaleDivs);
     window.addEventListener('resize', scaleDivs);
-    scaleDivs();
     function scaleDivs() {
         let scaleValue = 1;
         const viewportWidth = window.innerWidth;
