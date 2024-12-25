@@ -14,9 +14,10 @@
         let scaleValue = 1;
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
-        const contentWidth = .844 * viewportHeight;
+        const contentWidth = .841 * viewportHeight;
         if (viewportWidth < contentWidth) {
-          scaleValue = viewportWidth / contentWidth;
+          scaleValue = viewportWidth / (.871 * viewportHeight);
+          console.log(scaleValue);
           document.documentElement.style.setProperty('--scale-value', scaleValue);
         }
         
