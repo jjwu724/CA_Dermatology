@@ -7,24 +7,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <script>
-    document.addEventListener('DOMContentLoaded', scaleDivs);
-    window.addEventListener('resize', scaleDivs);
-    function scaleDivs() {
-        let scaleValue = 1;
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-        const contentWidth = .841 * viewportHeight;
-        if (viewportWidth < contentWidth) {
-          scaleValue = viewportWidth / (.891 * viewportHeight);
-          console.log(scaleValue);
-          document.documentElement.style.setProperty('--scale-value', scaleValue);
-        }
-        
-        //if (windowHeight > height) scaleValue = Math.min(maxScaleValue, windowHeight / height); //scale content up to fit vertical height
-        //Main.setDocProperty('--scale-value', scaleValue);
-    }
-  </script>
   <header>
     <img id="headerLogo" src="img/logo.webp" alt="California Dermatology Center">
     <div id="headerButtonsContainer">

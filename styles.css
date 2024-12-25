@@ -1,5 +1,4 @@
 :root {
-  --scale-value: 1;
   --header-height: 10vh;
   --header-gap: 1vh;
   --border-radius: .8vh;
@@ -7,6 +6,11 @@
   --gradient-top: #fafafa;
   --gradient-bottom: #f3f3f3;
   --navy-blue: #000080;
+}
+@media (max-width: 84.1vh) {
+  :root {
+    --header-height: 5.25vh;
+  }
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -19,8 +23,6 @@ header {
   align-items: center;
   height: var(--header-height);
   background-color: #f3f3f3;
-  transform-origin: top left;
-  transform: scale(var(--scale-value));
 }
 #headerLogo {
   display: inline-block;
