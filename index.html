@@ -7,15 +7,32 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-  <img id="headerLogo" src="img/logo.webp" alt="California Dermatology Center">
-  <div id="headerButtonsContainer">
-    <a><div class="roundedRect shadedRect headerButton">Call<br>555-555-1234</div></a>
-    <a><div class="roundedRect shadedRect headerButton">Book an<br>Appointment</div></a>
-    <a><div class="roundedRect shadedRect headerButton">Make a<br>Payment</div></a>
-  </div>
-</header>
-<nav>
-</nav>
+  <script>
+    window.addEventListener('resize', scaleDivs);
+    scaleDivs();
+    function scaleDivs() {
+        let scaleValue = 1;
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const contentWidth = .841 * viewportHeight;
+        if (viewportWidth < contentWidth) {
+          scaleValue = viewportWidth / contentWidth;
+          document.documentElement.style.setProperty('--scale-value', scaleValue);
+        }
+        
+        //if (windowHeight > height) scaleValue = Math.min(maxScaleValue, windowHeight / height); //scale content up to fit vertical height
+        //Main.setDocProperty('--scale-value', scaleValue);
+    }
+  </script>
+  <header>
+    <img id="headerLogo" src="img/logo.webp" alt="California Dermatology Center">
+    <div id="headerButtonsContainer">
+      <a><div class="roundedRect shadedRect headerButton">Call<br>555-555-1234</div></a>
+      <a><div class="roundedRect shadedRect headerButton">Book an<br>Appointment</div></a>
+      <a><div class="roundedRect shadedRect headerButton">Make a<br>Payment</div></a>
+    </div>
+  </header>
+  <nav>
+  </nav>
 </body>
 </html>
