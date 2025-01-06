@@ -4,10 +4,10 @@
   --border-radius: .8vh;
   --highlight: #ffffff;
   --gradient-top: #fafafa;
-  --gradient-bottom: #f3f3f3;
+  --gradient-bottom: #eeeeee;
   --navy-blue: #000080;
 }
-@media (max-width: 84.1vh) {
+@media (max-width: 84.1vh) {/* Header buttons width + gaps + logo width */
   :root {
     --header-height: 5.25vh;
   }
@@ -22,7 +22,7 @@ header {
   justify-content: space-between;
   align-items: center;
   height: var(--header-height);
-  background-color: #f3f3f3;
+  background-color: white;
 }
 #headerLogo {
   display: inline-block;
@@ -31,14 +31,13 @@ header {
 }
 #headerButtonsContainer {
   display: flex;
-  justify-content: space-between;
 }
 .roundedRect {border-radius: var(--border-radius);}
 .shadedRect {
     background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
     box-shadow: inset 0 1px 0 var(--highlight), inset 0 -1px 0 #cccccc;
     box-sizing: border-box;
-    border: .25vh solid var(--navy-blue);
+    border: .1vh solid var(--navy-blue);
 }
 .headerButton {
   display: flex; 
@@ -48,8 +47,41 @@ header {
   width: calc(1.6 * var(--header-height));
   height: calc(.8 * var(--header-height));
   white-space: nowrap;
-  font-size: calc(.2*var(--header-height));
+  font-size: calc(.22*var(--header-height));
+  font-weight: bold;
   color: var(--navy-blue);
   box-sizing: border-box;
   margin-right: var(--header-gap);
+  text-shadow: .1vh .1vh 0 #cccccc;
+  user-select: none;
+}
+nav {
+  background-color: var(--navy-blue);
+  overflow: hidden; /* Hide overflow for horizontal layout */
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Use flexbox for horizontal layout */
+  justify-content: center; /* Center the items horizontally */
+}
+
+nav li {
+  /*margin: 0 10px; */
+  width: 16.82vh;
+  text-align: center;
+}
+
+nav a {
+  color: #fff; /* White text color */
+  font-size: calc(.22*var(--header-height));
+  text-decoration: none;
+  padding: calc(.125*var(--header-height)) 20px; /* Add some padding for better click area */
+  display: block; /* Make links occupy the full width of their container */
+}
+
+nav a:hover {
+  background-color: #000060; /* Change background color on hover */
 }
