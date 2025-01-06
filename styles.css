@@ -1,4 +1,5 @@
 :root {
+  --header-padding: 0;
   --header-height: 10vh;
   --header-gap: 1vh;
   --border-radius: .8vh;
@@ -9,6 +10,7 @@
 }
 @media (max-width: 84.1vh) {/* Header buttons width + gaps + logo width */
   :root {
+    --header-padding: .25vh;
     --header-height: 5.25vh;
   }
 }
@@ -18,6 +20,8 @@ body {
   padding: 0;
 }
 header {
+  padding-top: var(--header-padding);
+  padding-bottom: var(--header-padding);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,28 +61,28 @@ header {
 }
 nav {
   background-color: var(--navy-blue);
-  overflow: hidden; /* Hide overflow for horizontal layout */
 }
-
 nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex; /* Use flexbox for horizontal layout */
   justify-content: center; /* Center the items horizontally */
+  align-items: stretch; /* Make children stretch to fill container height */
 }
-
 nav li {
-  /*margin: 0 10px; */
   width: 16.82vh;
+  display: block;
   text-align: center;
+  justify-content: center;
 }
 
 nav a {
   color: #fff; /* White text color */
-  font-size: calc(.22*var(--header-height));
+  font-size: calc(.18*var(--header-height));
+  font-weight: bold;
   text-decoration: none;
-  padding: calc(.125*var(--header-height)) 20px; /* Add some padding for better click area */
+  padding: calc(.3*var(--header-height)); /* Add some padding for better click area */
   display: block; /* Make links occupy the full width of their container */
 }
 
