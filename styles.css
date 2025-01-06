@@ -7,6 +7,7 @@
   --gradient-top: #fafafa;
   --gradient-bottom: #eeeeee;
   --navy-blue: #000080;
+  --nav-height: calc(.8 * var(--header-height));
 }
 @media (max-width: 84.1vh) {/* Header buttons width + gaps + logo width */
   :root {
@@ -68,21 +69,20 @@ nav ul {
   padding: 0;
   display: flex; /* Use flexbox for horizontal layout */
   justify-content: center; /* Center the items horizontally */
-  align-items: stretch; /* Make children stretch to fill container height */
 }
 nav li {
   width: 16.82vh;
-  display: block;
-  text-align: center;
-  justify-content: center;
+  height: var(--nav-height);
 }
 
 nav a {
   color: #fff; /* White text color */
   font-size: calc(.18*var(--header-height));
   font-weight: bold;
-  text-decoration: none;
-  padding: calc(.3*var(--header-height)); /* Add some padding for better click area */
+  text-decoration: none; /* Gets rid of the default link underline */
+  text-align: center;
+  line-height: var(--nav-height);
+  height: 100%;
   display: block; /* Make links occupy the full width of their container */
 }
 
