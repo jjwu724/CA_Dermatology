@@ -1,22 +1,29 @@
 :root {
-  --header-padding: 0;
   --header-height: 10vh;
-  --header-gap: 1vh;
-  --border-radius: .8vh;
+  --header-font-size: calc(.22*var(--header-height));
+  --header-text-shadow-offset: calc(.01 * var(--header-height));
+  --header-gap: calc(.1 * var(--header-height));
+  --header-padding: 0;
+  --border-radius: calc(.08 * var(--header-height));
   --highlight: #ffffff;
   --gradient-top: #fafafa;
   --gradient-bottom: #eeeeee;
-  --navy-blue: #000080;
+  --navy-blue-medium: #000080;
+  --navy-blue-dark: #000060;
+  --navy-blue-light: #0000aa;
   --nav-height: calc(.8 * var(--header-height));
+  --nav-border: calc(.04 * var(--nav-height));
+  --nav-font-size: calc(.20*var(--header-height));
 }
 @media (max-width: 84.1vh) {/* Header buttons width + gaps + logo width */
   :root {
-    --header-padding: .25vh;
     --header-height: 5.25vh;
+    --header-font-size: calc(.23*var(--header-height));
+    --header-padding: .25vh;
+    --nav-font-size: calc(.25*var(--header-height));
   }
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -40,52 +47,52 @@ header {
 .roundedRect {border-radius: var(--border-radius);}
 .shadedRect {
     background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
-    box-shadow: inset 0 1px 0 var(--highlight), inset 0 -1px 0 #cccccc;
+    box-shadow: inset 0 var(--header-text-shadow-offset) 0 var(--highlight), inset 0 calc(-1.5 * var(--header-text-shadow-offset)) 0 #cccccc;
     box-sizing: border-box;
-    border: .1vh solid var(--navy-blue);
+    border: .1vh solid var(--navy-blue-medium);
 }
 .headerButton {
-  display: flex; 
+  font-family: Arial, sans-serif;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   width: calc(1.6 * var(--header-height));
   height: calc(.8 * var(--header-height));
-  white-space: nowrap;
-  font-size: calc(.22*var(--header-height));
+  font-size: var(--header-font-size);
   font-weight: bold;
-  color: var(--navy-blue);
-  box-sizing: border-box;
+  color: var(--navy-blue-medium);
   margin-right: var(--header-gap);
-  text-shadow: .1vh .1vh 0 #cccccc;
+  text-shadow: var(--header-text-shadow-offset) var(--header-text-shadow-offset) 0 #cccccc;
+  text-decoration: none; /* Gets rid of the default link underline */
   user-select: none;
 }
-nav {
-  background-color: var(--navy-blue);
-}
+nav {background-color: var(--navy-blue-medium);}
 nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex; /* Use flexbox for horizontal layout */
   justify-content: center; /* Center the items horizontally */
+  gap: calc(.05 * var(--nav-height));
 }
 nav li {
-  width: 16.82vh;
+  display: flex; /* Make list items flex containers */
+  align-items: center; /* Vertically center children */
+  justify-content: center; /* Horizontally center children if needed */
   height: var(--nav-height);
 }
-
 nav a {
-  color: #fff; /* White text color */
-  font-size: calc(.18*var(--header-height));
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16.42vh; /* (84.1vh - 4*.5vh) ÷ 5 */
+  height: 90%;
+  font-family: Arial, sans-serif;
+  font-size: var(--nav-font-size);
+  color: white;
   text-decoration: none; /* Gets rid of the default link underline */
-  text-align: center;
-  line-height: var(--nav-height);
-  height: 100%;
-  display: block; /* Make links occupy the full width of their container */
 }
-
-nav a:hover {
-  background-color: #000060; /* Change background color on hover */
-}
+nav a.active {background-color: var(--navy-blue-light);}
+nav a.active:hover {background-color: var(--navy-blue-light);}
+nav a:hover {background-color: var(--navy-blue-dark);}
