@@ -86,7 +86,7 @@ nav a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16.42vh; /* (84.1vh - 4*.5vh) ÷ 5 */
+  width: calc(1.642 * var(--header-height)); /* (84.1vh - 4*.5vh) ÷ 5 */
   height: 90%;
   font-family: Arial, sans-serif;
   font-size: var(--nav-font-size);
