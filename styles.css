@@ -25,7 +25,8 @@
     --header-font-size: calc(.23 * var(--header-height));
     --header-padding: .25vh;
     --nav-font-size: calc(1.15 * var(--header-font-size));
-    --main-padding-horizontal: calc(.6 * var(--main-padding-vertical));
+    --main-padding-vertical: calc(.2 * var(--header-height));
+    --main-padding-horizontal: calc(.24 * var(--header-height));
     --section-padding: calc(1.25 * var(--main-padding-horizontal));
   }
 }
