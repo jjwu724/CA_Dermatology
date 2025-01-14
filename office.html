@@ -4,11 +4,20 @@
   <title>California Dermatology Center - Office</title>
   <script src="script.js"></script>
   <style>
+    .office {
+      --map-width: calc(100% - (4.813 * var(--header-height)));
+      --map-padding-right: var(--section-padding);
+    }
+    @media (max-width: 120vh) {
+      .office {
+        --map-width: 100%;
+        --map-padding-right: 0;
+      }
+    }
     #corona-map {
-      width: calc(100% - 300px);
-      min-width: 60%;
-      height: 450px;
-      padding-right: var(--section-padding);
+      width: var(--map-width);
+      height: calc(8 * var(--header-height));
+      padding-right: var(--map-padding-right);
       padding-bottom: var(--section-padding);
     }
     #address-and-hours {
@@ -24,7 +33,7 @@
 <body>
   <header id="header-shared"></header>
   <nav id="nav-shared"></nav>
-  <main> 
+  <main class="office"> 
     <section> 
       <h2>Corona office</h2>
       <iframe id="corona-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.6156088331527!2d-117.57098692417509!3d33.87379597322476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcc80df445e78d%3A0x6ac4962bc0882d4f!2sMEDICAL%20ART%20BUILDING%2C%20760%20S%20Washburn%20Ave%20%23%2011%2C%20Corona%2C%20CA%2092882!5e0!3m2!1sen!2sus!4v1736460112592!5m2!1sen!2sus" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
