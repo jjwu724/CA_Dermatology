@@ -23,6 +23,7 @@ fetch('./shared.html')
     const areaCode = computedStyle.getPropertyValue('--area-code').slice(1, -1);
     const phoneNumber = computedStyle.getPropertyValue('--phone-number').slice(1, -1);
     const fullPhoneNumber = areaCode + phoneNumber;
+    const email = computedStyle.getPropertyValue('--email').slice(1, -1);
     const address1 = computedStyle.getPropertyValue('--address-1').slice(1, -1);
     const address2 = computedStyle.getPropertyValue('--address-2').slice(1, -1);
     const webUrl = computedStyle.getPropertyValue('--webUrl').slice(1, -1);
@@ -37,6 +38,12 @@ fetch('./shared.html')
     const phoneNumberSpans = document.getElementsByClassName('phoneNumber');
     l = phoneNumberSpans.length;
     for (i=0; i<l; i++) {phoneNumberSpans[i].textContent = phoneNumber;}
+    const emailSpans = document.getElementsByClassName('email');
+    l = emailSpans.length;
+    for (i=0; i<l; i++) {emailSpans[i].textContent = email;}
+    const emailLinks = document.getElementsByClassName('emailLink');
+    l = emailLinks.length;
+    for (i=0; i<l; i++) {emailLinks[i].href = `mailto:${email}`;}
     const address1Spans = document.getElementsByClassName('address-1');
     l = address1Spans.length;
     for (i=0; i<l; i++) {address1Spans[i].textContent = address1;}
