@@ -4,17 +4,20 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     :root {
-      --area-code: (555);
-      --phone-number: 555-1234;
+      --area-code: "(555)";
+      --phone-number: "555-1234";
+      --address-1: "760 S Washburn, Suite #11";
+      --address-2: "Corona, CA 92882";
+      --webUrl: "jjwu724.github.io/CA_Derm_Center";
     }
   </style>
 </template>
 <template id="header">
   <img id="headerLogo" src="img/logo.webp" alt="California Dermatology Center">
   <div id="headerButtonsContainer">
-    <a id="phoneLink" class="roundedRect headerButton" href=""><span>
-      Call <span id="areaCodeDisplay"></span><br>
-      <span id="phoneNumberDisplay"></span>
+    <a class="roundedRect headerButton phoneLink" href=""><span>
+      Call <span class="areaCode"></span><br>
+      <span class="phoneNumber"></span>
     </span></a>
     <a class="roundedRect headerButton"><span>
       Book an<br>
@@ -34,4 +37,13 @@
     <li><a href="#">PATIENTS</a></li>
     <li><a href="#">EXTRA</a></li>
   </ul>
+</template>
+<template id="contact">
+  <h2>Contact</h2>
+  <address>
+    <span class="contact-label">Phone:</span> <a class="phoneLink" href=""><span class="areaCode"></span> <span class="phoneNumber"></span></a><br>
+    <span class="contact-label">Email:</span> <a href="mailto:info@test.com">info@test.com</a><br>
+    <span class="contact-label">Website:</span> <a class="webUrlLink" href=""><span class="webUrl"></span></a><br>
+    <span class="contact-label">Address:</span> <span class="address-1"></span>, <span class="address-2"></span><br>
+  </address>
 </template>

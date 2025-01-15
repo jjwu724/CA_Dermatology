@@ -33,6 +33,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #ccccef;
 }
 header {
   padding-top: var(--header-padding);
@@ -110,7 +111,6 @@ nav a:hover {
   text-decoration: underline;
 }
 main {
-  background-color: #ccccef;
   padding: var(--main-padding-vertical) var(--main-padding-horizontal);
 }
 main > *:not(:last-child) {
@@ -141,4 +141,7 @@ p {
 }
 address {
   font-style: normal;
+}
+.contact-label {
+  font-weight: bold;
 }
