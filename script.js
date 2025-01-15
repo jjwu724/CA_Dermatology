@@ -8,7 +8,7 @@ fetch('./shared.html')
     document.getElementById('header-shared').appendChild(templateHeader.cloneNode(true));
     const templateNav = templateDoc.querySelector('template#nav').content;
     document.getElementById('nav-shared').appendChild(templateNav.cloneNode(true));
-    const currentPage = window.location.pathname.split('/').pop();// Get current page name
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
