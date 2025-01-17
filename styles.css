@@ -18,6 +18,7 @@
   --main-padding-horizontal: calc(2 * var(--main-padding-vertical));
   --section-padding: var(--main-padding-vertical);
   --section-font-size: calc(1.2 * var(--header-font-size));
+  --thin-line: calc(.01 * var(--header-height));
 }
 @media (max-width: 84.1vh) {/* logo width + header buttons width + gaps */
   :root {
@@ -135,6 +136,13 @@ h4 {
   font-family: Verdana, sans-serif;
   font-size: calc(1.2 * var(--header-font-size));
   margin: 0;
+}
+hr {
+  border: 0;
+  height: var(--thin-line);
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+  margin-top: 0;
 }
 p {
   margin: 0;
