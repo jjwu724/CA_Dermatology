@@ -57,6 +57,7 @@ fetch('./shared.html')
     const webUrlLinks = document.getElementsByClassName('webUrlLink');
     l = webUrlLinks.length;
     for (i=0; i<l; i++) {webUrlLinks[i].href = `https://${webUrl}`;}
+    document.documentElement.classList.add('styles-loaded');
     observeNav();
   })
   .catch(error => console.error('Error loading template:', error));

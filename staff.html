@@ -12,11 +12,15 @@
       }
     }
     .profilePicture {
+      visibility: hidden;
       width: var(--profile-pic-width);
       height: auto;
       float: left;
       margin-right: 20px;
       border: var(--thin-line) solid black;
+    }
+    .styles-loaded .profilePicture {
+      visibility: visible;
     }
     .profileText {
       text-align: justify;
