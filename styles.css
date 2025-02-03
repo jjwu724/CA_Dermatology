@@ -40,7 +40,7 @@
     --thin-line: .08vh;
   }
 }
-.styles-loaded img {visibility: visible !important;}
+.styles-loaded img {opacity: 1;}
 body {
   margin: 0;
   padding: 0;
