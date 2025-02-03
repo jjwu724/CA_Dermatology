@@ -17,6 +17,8 @@
   --nav-font-size: var(--header-font-size);
   --nav-corner: calc(.5 * var(--border-radius));
   --icon-gap: calc(.2 * var(--nav-height));
+  --nav2-top: calc(.03 * var(--header-height));
+  --nav2-left: calc(.03 * var(--header-height));
   --main-padding-vertical: calc(.4 * var(--header-height));
   --main-padding-horizontal: calc(2 * var(--main-padding-vertical));
   --section-padding: var(--main-padding-vertical);
@@ -41,7 +43,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #ccccef;
+  background-color: #c7d3dd;
 }
 header {
   display: flex;
@@ -84,13 +86,27 @@ header {
   user-select: none;
   margin-right: var(--header-gap);
 }
+#nav-decoration {
+  display: none;
+  position: absolute;
+  z-index: -1;
+  background-color: var(--navy-blue-highlight);
+  border-top: var(--thick-line) solid var(--navy-blue-dark);
+  border-bottom: var(--thick-line) solid var(--navy-blue-dark);
+  width: 99%;
+  border-radius: var(--nav-corner) var(--nav-corner) var(--nav-corner) 0;
+  transform-origin: top left;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+}
 nav {
   display: flex;
   justify-content: space-between;
-  background-color: var(--navy-blue-light);
   border-top: var(--thick-line) solid var(--navy-blue-dark);
   border-bottom: var(--thick-line) solid var(--navy-blue-dark);
 }
+.nav1-background-solid {background-color: var(--navy-blue-light);}
+.nav1-background-gradient {background: linear-gradient(to right, var(--navy-blue-light) 98.5%, var(--navy-blue-highlight) 100%);}
 nav #shrinking-spacer {
   flex-shrink: 1;
   flex-basis: calc(2.2 * var(--nav-height));
@@ -169,8 +185,8 @@ nav #icon-container img {
 #nav-shared2 {
   display: none;
   justify-content: center;
-  margin-left: calc(.05 * var(--header-height));
-  margin-top: calc(.07 * var(--header-height));
+  margin-left: var(--nav2-left);
+  margin-top: var(--nav2-top);
   border-left: calc(1.25 * var(--thick-line)) solid var(--navy-blue-dark);
   border-radius: var(--nav-corner) 0 0 var(--nav-corner);
   background: linear-gradient(to right, var(--navy-blue-highlight) 0%, var(--navy-blue-light) 2%);
@@ -187,7 +203,7 @@ section {
   padding-left: var(--section-padding);
   padding-right: var(--section-padding);
   padding-bottom: var(--section-padding);
-  box-shadow: 0 0 1vh #A7A7C4;
+  box-shadow: 0 0 1vh rgba(0, 0, 0, 0.25);
   font-family: "Roboto Flex", sans-serif;
   font-size: var(--section-font-size);
 }
