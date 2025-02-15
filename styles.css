@@ -8,17 +8,20 @@
   --highlight: #ffffff;
   --gradient-top: #f4f4f4;
   --gradient-bottom: #eeeeee;
-  --navy-blue-medium: #000080;
+  --teal-base: #005F5F;
+  --teal-light: #008080;
+  --teal-medium: #005656;
+  --teal-shadow: #003737;
+  --teal-dark: #003232;
+  /*--navy-blue-medium: #000080;
   --navy-blue-dark: #000060;
   --navy-blue-light: #0000aa;
-  --navy-blue-highlight: #4646C1;
+  --navy-blue-highlight: #4646C1;*/
   --nav-height: calc(.5 * var(--header-height));
   --nav-border: calc(.04 * var(--nav-height));
   --nav-font-size: var(--header-font-size);
   --nav-corner: calc(.5 * var(--border-radius));
   --icon-gap: calc(.2 * var(--nav-height));
-  --nav2-top: calc(.03 * var(--header-height));
-  --nav2-left: calc(.03 * var(--header-height));
   --main-padding-vertical: calc(.4 * var(--header-height));
   --main-padding-horizontal: calc(2 * var(--main-padding-vertical));
   --section-padding: var(--main-padding-vertical);
@@ -44,7 +47,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #c7d3dd;
+  background-color: #dfe8e7;
 }
 header {
   display: flex;
@@ -69,7 +72,7 @@ header {
   background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
   box-shadow: inset 0 var(--header-text-shadow-offset) 0 var(--highlight), inset 0 calc(-1.5 * var(--header-text-shadow-offset)) 0 #bbbbbb;
   box-sizing: border-box;
-  border: var(--thin-line) solid var(--navy-blue-medium);
+  border: var(--thin-line) solid var(--teal-medium);
 }
 .headerButton {
   display: flex;
@@ -81,7 +84,7 @@ header {
   font-family: "Roboto Flex", sans-serif;
   font-size: var(--header-font-size);
   font-weight: 600;
-  color: var(--navy-blue-medium);
+  color: var(--teal-dark);
   text-shadow: calc(-1*var(--header-text-shadow-offset)) calc(-1*var(--header-text-shadow-offset)) 0 #cccccc;
   text-decoration: none;
   user-select: none;
@@ -91,9 +94,9 @@ header {
   display: none;
   position: absolute;
   z-index: -1;
-  background-color: var(--navy-blue-highlight);
-  border-top: var(--thick-line) solid var(--navy-blue-dark);
-  border-bottom: var(--thick-line) solid var(--navy-blue-dark);
+  background-color: var(--teal-light);
+  border-top: var(--thick-line) solid var(--teal-shadow);
+  border-bottom: var(--thick-line) solid var(--teal-shadow);
   width: 99%;
   border-radius: var(--nav-corner) var(--nav-corner) var(--nav-corner) 0;
   transform-origin: top left;
@@ -103,11 +106,11 @@ header {
 nav {
   display: flex;
   justify-content: space-between;
-  border-top: var(--thick-line) solid var(--navy-blue-dark);
-  border-bottom: var(--thick-line) solid var(--navy-blue-dark);
+  border-top: var(--thick-line) solid var(--teal-shadow);
+  border-bottom: var(--thick-line) solid var(--teal-shadow);
 }
-.nav1-background-solid {background-color: var(--navy-blue-light);}
-.nav1-background-gradient {background: linear-gradient(to right, var(--navy-blue-light) 98.5%, var(--navy-blue-highlight) 100%);}
+.nav1-background-solid {background-color: var(--teal-base);}
+.nav1-background-gradient {background: linear-gradient(to right, var(--teal-base) 98.5%, var(--teal-light) 100%);}
 nav #shrinking-spacer {
   flex-shrink: 1;
   flex-basis: calc(2.2 * var(--nav-height));
@@ -139,7 +142,7 @@ nav ul li:not(.no-pip):not(:has(+ .no-pip))::after {
   position: absolute;
   width: var(--thin-line);
   height: 75%;
-  background-color: var(--navy-blue-medium);
+  background-color: var(--teal-medium);
 }
 nav ul li:first-child:not(.no-pip)::before {
   left: calc(-1 * var(--thin-line)); 
@@ -160,9 +163,9 @@ nav li a {
   text-decoration: none;
   text-shadow: 0px calc(-.06 * var(--nav-font-size)) 0 black;
 }
-nav li a.active {background-color: var(--navy-blue-dark);}
+nav li a.active {background-color: var(--teal-shadow);}
 nav li a.active:hover {
-  background-color: var(--navy-blue-dark);
+  background-color: var(--teal-shadow);
   text-decoration: none;
   cursor: default;
 }
@@ -182,15 +185,16 @@ nav #icon-container img {
   display: inline-block;
   width: auto;
   height: calc(.8* var(--nav-height));
+  filter: drop-shadow(0px calc(-.03 * var(--nav-font-size)) 0 black);
 }
 #nav-shared2 {
   display: none;
   justify-content: center;
-  margin-left: var(--nav2-left);
-  margin-top: var(--nav2-top);
-  border-left: calc(1.25 * var(--thick-line)) solid var(--navy-blue-dark);
+  margin-top: calc(.03 * var(--header-height));
+  margin-left: calc(.01 * var(--header-height));
+  border-left: calc(1.25 * var(--thick-line)) solid var(--teal-shadow);
   border-radius: var(--nav-corner) 0 0 var(--nav-corner);
-  background: linear-gradient(to right, var(--navy-blue-highlight) 0%, var(--navy-blue-light) 2%);
+  background: linear-gradient(to right, var(--teal-light) 0%, var(--teal-base) 2%);
 }
 main {
   padding: var(--main-padding-vertical) var(--main-padding-horizontal);
