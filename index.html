@@ -3,12 +3,39 @@
 <head>
   <title>California Dermatology Center - About</title>
   <style>img {opacity: 0;}</style>
+  <style>
+    .twoImgContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--section-padding);
+    }
+    .twoImgContainer img {
+      height: auto;
+      flex: 1;
+      min-width: 0;
+      max-width: 100%;
+    }
+  </style>
   <script type="module" src="script.js"></script>
 </head>
 <body>
   <header id="header-shared"></header>
   <div id="nav-container-shared"></div>
   <main class="about">
+    <section>
+      <h2>Our Mission</h2><hr>
+      <div class="twoImgContainer">
+        <img src="img/patient1.jpg" alt="Patient 1">
+        <img src="img/patient2.jpg" alt="Patient 2">
+      </div>
+      <br>
+      <p>At California Dermatology, we approach dermatology with a deep understanding of the science behind skin health and a commitment to 
+         providing compassionate, individualized care. We specialize in the precise diagnosis, effective treatment, and proactive prevention of a wide range 
+         of skin diseases and conditions. Our team combines extensive experience, rigorous training, and a commitment to evidence-based medicine to ensure 
+         accurate diagnoses and personalized treatment plans for patients of all ages. Our mission is to empower patients to achieve and maintain 
+         lasting skin health.</p><br>
+    </section>
     <section id="contact-shared"></section>
   </main>
 </body>
