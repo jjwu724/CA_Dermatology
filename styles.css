@@ -92,9 +92,6 @@ header {
   user-select: none;
   margin-right: var(--header-gap);
 }
-#nav-container-shared {
-  display: block;
-}
 #nav-decoration {
   display: none;
   position: absolute;
