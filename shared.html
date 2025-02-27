@@ -7,9 +7,9 @@
   <link rel="preload" href="styles.css" as="style" onload="this.onload=null; this.rel='stylesheet';">
   <style>
     :root {
-      --area-code: "(555)";
-      --phone-number: "555-1234";
-      --address-1: "760 S Washburn, Suite #202";
+      --area-code: "(951)";
+      --phone-number: "257-8881";
+      --address-1: "760 S Washburn, Suite #201";
       --address-2: "Corona, CA 92882";
       --email: "info@example.com";
       --webUrl: "jjwu724.github.io/CA_Derm_Center";
@@ -17,46 +17,48 @@
   </style>
 </template>
 <template id="header">
-  <img id="headerLogo" src="img/logo.webp" alt="California Dermatology Center">
-  <div id="headerButtonsContainer">
-    <a class="roundedRect headerButton phoneLink" href=""><span>
-      Call <span class="areaCode"></span><br>
-      <span class="phoneNumber"></span>
-    </span></a>
-    <a class="roundedRect headerButton"><span>
-      Book an<br>
-      Appointment
-    </span></a>
-    <a class="roundedRect headerButton"><span>
-      Make a<br>
-      Payment
-    </span></a>
+  <div id="primary-container">
+    <img id="headerLogo" src="img/logo.webp" alt="California Dermatology Center">
+    <div id="headerButtonsContainer">
+      <a class="roundedRect headerButton phoneLink" href=""><span>
+        Call <span class="areaCode"></span><br>
+        <span class="phoneNumber"></span>
+      </span></a>
+      <a class="roundedRect headerButton"><span>
+        Book an<br>
+        Appointment
+      </span></a>
+      <a class="roundedRect headerButton"><span>
+        Make a<br>
+        Payment
+      </span></a>
+    </div>
   </div>
-</template>
-<template id="nav">
-  <div id="nav-decoration"></div>
-  <nav id="nav-shared1" class="nav1-background-solid">
-    <div id="shrinking-spacer"></div>
-    <div id="ul-wrapper">
-      <ul id="ul1">
-        <li><a href="index.html">About Us</a></li>
-        <li><a href="office.html">Our Office</a></li>
-        <li><a href="staff.html">Our Team</a></li>
-        <li><a href="#">For Patients</a></li>
-        <li><a href="#">Medical</a></li>
-        <li><a href="#">Cosmetic</a></li>
-        <li><a href="#">Skin Cancer</a></li>
-        <li><a href="#">Research</a></li>
-      </ul>
-    </div>
-    <div id="icon-container">
-      <a href="https://www.facebook.com" target="_blank"><img src="img/facebook.svg" alt="Facebook icon" width="20" height="20"></a>
-      <a href="https://www.instagram.com" target="_blank"><img src="img/instagram.svg" alt="Instagram icon" width="20" height="20"></a>
-    </div>
-  </nav>
-  <nav id="nav-shared2">
-    <ul id="ul2"></ul>
-  </nav>
+  <div id="nav-container-shared">
+    <div id="nav-decoration"></div>
+    <nav id="nav-shared1" class="nav1-background-solid">
+      <div id="shrinking-spacer"></div>
+      <div id="ul-wrapper">
+        <ul id="ul1">
+          <li><a href="index.html">About Us</a></li>
+          <li><a href="office.html">Our Office</a></li>
+          <li><a href="staff.html">Our Team</a></li>
+          <li><a href="#">For Patients</a></li>
+          <li><a href="#">Medical</a></li>
+          <li><a href="#">Cosmetic</a></li>
+          <li><a href="#">Skin Cancer</a></li>
+          <li><a href="#">Research</a></li>
+        </ul>
+      </div>
+      <div id="icon-container">
+        <a href="https://www.facebook.com" target="_blank"><img src="img/facebook.svg" alt="Facebook icon" width="20" height="20"></a>
+        <a href="https://www.instagram.com" target="_blank"><img src="img/instagram.svg" alt="Instagram icon" width="20" height="20"></a>
+      </div>
+    </nav>
+    <nav id="nav-shared2">
+      <ul id="ul2"></ul>
+    </nav>
+  </div>
 </template>
 <template id="contact">
   <h2>Contact Us</h2><hr>

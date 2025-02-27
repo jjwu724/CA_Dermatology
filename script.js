@@ -6,8 +6,6 @@ fetch('./shared.html')
     document.head.appendChild(templateHead.cloneNode(true));
     const templateHeader = templateDoc.querySelector('template#header').content;
     document.getElementById('header-shared').appendChild(templateHeader.cloneNode(true));
-    const templateNav = templateDoc.querySelector('template#nav').content;
-    document.getElementById('nav-container-shared').appendChild(templateNav.cloneNode(true));
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
@@ -95,8 +93,8 @@ function observeNav() {
         const nav1Rect = nav1.getBoundingClientRect();
         const nav2Rect = nav2.getBoundingClientRect();
         Object.assign(decoration.style, {
-          top: `${nav2Rect.top + window.scrollY}px`,
-          left: `${nav2Rect.left + window.scrollX}px`
+          top: `${nav2Rect.top}px`,
+          left: `${nav2Rect.left}px`
         });
         const decorationRot = Math.atan2((nav1Rect.top - nav2Rect.top), nav2Rect.width);
         decoration.style.transform = `rotate(${decorationRot}rad)`;

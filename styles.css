@@ -50,6 +50,10 @@ body {
   background-color: #dfe8e7;
 }
 header {
+  position: sticky;
+  top: 0;
+}
+#primary-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,9 +68,7 @@ header {
   width: auto;
   height: 100%;
 }
-#headerButtonsContainer {
-  display: flex;
-}
+#headerButtonsContainer {display: flex;}
 .roundedRect {
   border-radius: var(--border-radius);
   background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-bottom));
@@ -89,6 +91,9 @@ header {
   text-decoration: none;
   user-select: none;
   margin-right: var(--header-gap);
+}
+#nav-container-shared {
+  display: block;
 }
 #nav-decoration {
   display: none;
