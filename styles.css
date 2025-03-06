@@ -4,7 +4,6 @@
   --header-text-shadow-offset: calc(.008 * var(--header-height));
   --header-gap: calc(.1 * var(--header-height));
   --header-padding: 0;
-  --header-background-position: right top;
   --border-radius: calc(.08 * var(--header-height));
   --highlight: #ffffff;
   --gradient-top: #f4f4f4;
@@ -40,17 +39,11 @@
   --normal-line: calc(1.25 * var(--thin-line));
   --thick-line: calc(2 * var(--thin-line));
 }
-@media (max-width: 190vh) {
-  :root {
-    --header-background-position: -31vh top;
-  }
-}
 @media (max-width: 84.1vh) {/* logo width + header buttons width + gaps */
   :root {
     --header-height: 5.25vh;
     --header-font-size: calc(.235 * var(--header-height));
     --header-padding: .25vh;
-    --header-background-position: -28vh top;
     --nav-height: calc(.8 * var(--header-height));
     --nav-font-size: calc(1.2 * var(--header-font-size));
     --main-padding-vertical: calc(.2 * var(--header-height));
@@ -78,7 +71,6 @@ header {
   height: var(--header-height);
   background-image: url('img/header.webp');
   background-size: cover;
-  background-position: var(--header-background-position);
 }
 #headerLogo {
   display: inline-block;
