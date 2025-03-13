@@ -13,7 +13,7 @@ fetch('./shared.html')
         if (href === currentPage) {
             link.classList.add('active');
             link.setAttribute('aria-current', 'page');
-            link.parentElement.classList.add('no-pip');
+            link.parentElement.classList.add('no-pipe');
         }
     });
     const templateContact = templateDoc.querySelector('template#contact').content
@@ -65,8 +65,8 @@ function observeNav() {
   const spacer = document.getElementById("shrinking-spacer");
   const nav1 = document.getElementById("nav-shared1");
   const nav2 = document.getElementById("nav-shared2");
-  const ul1 = document.getElementById('ul1');
-  const ul2 = document.getElementById('ul2');
+  const ul1 = document.getElementById('ul_nav1');
+  const ul2 = document.getElementById('ul_nav2');
   let nav1MinWidth;
   const observer = new ResizeObserver(entries => {
     for (let entry of entries) {
@@ -75,7 +75,7 @@ function observeNav() {
       if (target === spacer && width === 0) {
         observer.unobserve(spacer);
         nav1MinWidth = nav1.offsetWidth + 1;
-        const allLi1 = ul1.querySelectorAll('li');
+        const allLi1 = ul1.querySelectorAll('#ul_nav1 > li');
         const liToMove = Array.from(allLi1).slice(4);
         liToMove.forEach(li => ul2.appendChild(li));
         nav1.className = 'nav1-background-gradient';
@@ -86,7 +86,7 @@ function observeNav() {
         observer.unobserve(nav1);
         nav1.className = 'nav1-background-solid';
         nav2.style.display = decoration.style.display = 'none';
-        const allLi2 = ul2.querySelectorAll('li');
+        const allLi2 = ul2.querySelectorAll('#ul_nav2 > li');
         allLi2.forEach(li => ul1.appendChild(li));
         requestAnimationFrame(() => {observer.observe(spacer);});
       } else if (target === nav1) {
