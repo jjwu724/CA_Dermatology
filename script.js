@@ -55,6 +55,14 @@ fetch('./shared.html')
     const webUrlLinks = document.getElementsByClassName('webUrlLink');
     l = webUrlLinks.length;
     for (i=0; i<l; i++) {webUrlLinks[i].href = `https://${webUrl}`;}
+    const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+    dropdownLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        const container = this.closest('.dropdown-container');
+        container.style.display = 'none';
+        requestAnimationFrame(() => {container.style.display = '';});
+      });
+    });
     document.documentElement.classList.add('styles-loaded');
     observeNav();
   })
@@ -81,11 +89,13 @@ function observeNav() {
         nav1.className = 'nav1-background-gradient';
         decoration.style.display = 'block';
         nav2.style.display = 'flex';
+        document.documentElement.style.setProperty('--nav2-offset', 'var(--nav-height)');
         requestAnimationFrame(() => {observer.observe(nav1);});
       } else if (target === nav1 && width > nav1MinWidth) {
         observer.unobserve(nav1);
         nav1.className = 'nav1-background-solid';
         nav2.style.display = decoration.style.display = 'none';
+        document.documentElement.style.setProperty('--nav2-offset', '0px');
         const allLi2 = ul2.querySelectorAll('#ul_nav2 > li');
         allLi2.forEach(li => ul1.appendChild(li));
         requestAnimationFrame(() => {observer.observe(spacer);});

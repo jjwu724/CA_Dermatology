@@ -30,6 +30,7 @@
   --nav-border: calc(.04 * var(--nav-height));
   --nav-font-size: var(--header-font-size);
   --nav-corner: calc(.5 * var(--border-radius));
+  --nav2-offset: 0px;
   --icon-gap: calc(.2 * var(--nav-height));
   --main-padding-vertical: calc(.4 * var(--header-height));
   --main-padding-horizontal: calc(2 * var(--main-padding-vertical));
@@ -203,12 +204,16 @@ nav #icon-container img {
   height: calc(.8* var(--nav-height));
   filter: drop-shadow(0px calc(-.03 * var(--nav-font-size)) 0 black);
 }
-.dropdown-parent {
-  position: relative;
+.dropdown-container {
+  position: absolute;
+  display: none;
+  align-items: flex-start;
+  top: 100%;
+  left: 0;
 }
 .dropdown-menu {
-  display: none;
-  position: absolute;
+  display: block;
+  white-space: nowrap;
   width: fit-content;
   background: var(--medium-color);
   top: 100%;
@@ -216,6 +221,11 @@ nav #icon-container img {
 }
 .dropdown-menu li {
   border-top: var(--thick-line) solid var(--shadow-color);
+  border-left: var(--thick-line) solid var(--shadow-color);
+  border-right: var(--thick-line) solid var(--shadow-color);
+}
+.dropdown-menu li:last-child {
+  border-bottom: var(--thick-line) solid var(--shadow-color);
 }
 .dropdown-menu li a {
   position: relative;
@@ -229,7 +239,10 @@ nav #icon-container img {
   margin-top: var(--thick-line);
   left: calc(.35 * var(--header-font-size));
 }
-.dropdown-parent:hover .dropdown-menu {display: block;}
+.dropdown-parent:hover .dropdown-container {display: flex;}
+.nth-column li {
+  border-left: none;
+}
 #nav-shared2 {
   display: none;
   justify-content: center;
@@ -238,6 +251,9 @@ nav #icon-container img {
   border-left: calc(1.25 * var(--thick-line)) solid var(--shadow-color);
   border-radius: var(--nav-corner) 0 0 var(--nav-corner);
   background: linear-gradient(to right, var(--light-color) 0%, var(--base-color) 2%);
+}
+.narrow-text {
+  letter-spacing: -0.05em;
 }
 main {
   padding: var(--main-padding-vertical) var(--main-padding-horizontal);
@@ -254,6 +270,9 @@ section {
   box-shadow: 0 0 1vh rgba(0, 0, 0, 0.25);
   font-family: "Roboto Flex", sans-serif;
   font-size: var(--section-font-size);
+}
+.jump-offset {
+  scroll-margin-top: calc(var(--header-height) + var(--nav-height) + var(--nav2-offset) + var(--section-font-size));
 }
 h2 {
   font-family: Verdana, sans-serif;
