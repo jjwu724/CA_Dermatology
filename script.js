@@ -55,14 +55,14 @@ fetch('./shared.html')
     const webUrlLinks = document.getElementsByClassName('webUrlLink');
     l = webUrlLinks.length;
     for (i=0; i<l; i++) {webUrlLinks[i].href = `https://${webUrl}`;}
-    const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+    /*const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
     dropdownLinks.forEach(link => {
       link.addEventListener('click', function() {
         const container = this.closest('.dropdown-container');
         container.style.display = 'none';
         requestAnimationFrame(() => {container.style.display = '';});
       });
-    });
+    });*/
     document.documentElement.classList.add('styles-loaded');
     observeNav();
   })
