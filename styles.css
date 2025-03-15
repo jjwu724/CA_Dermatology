@@ -239,7 +239,8 @@ nav #icon-container img {
   margin-top: var(--thick-line);
   left: calc(.35 * var(--header-font-size));
 }
-.dropdown-parent:hover .dropdown-container {display: flex;}
+/*.dropdown-parent:hover .dropdown-container {display: flex;}*/
+.dropdown-container.open {display: flex;}
 .nth-column li {
   border-left: none;
 }

@@ -1,3 +1,9 @@
+let fetchDone = false;
+const currentSection = getQueryParam(window.location.href, 'section');
+window.addEventListener('load', () => {
+  if (fetchDone && currentSection) {requestAnimationFrame(() => scrollToSection(currentSection));}
+});
+
 fetch('./shared.html')
   .then(response => response.text())
   .then(data => {
@@ -11,13 +17,23 @@ fetch('./shared.html')
     currentPage = currentPage.endsWith('.html') ? currentPage : currentPage + '.html';
     const navLinks = document.querySelectorAll('ul.parent-ul > li > a');
     navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        const hrefBase = href.split('?')[0];
-        if (hrefBase === currentPage) {
-            link.classList.add('active');
-            link.setAttribute('aria-current', 'page');
-            link.parentElement.classList.add('no-pipe');
-        }
+      const href = link.getAttribute('href');
+      const hrefBase = href.split('?')[0];
+      if (hrefBase === currentPage) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+        link.parentElement.classList.add('no-pipe');
+      }
+    });
+    const dropdownParents = document.querySelectorAll('.dropdown-parent');
+    dropdownParents.forEach(parent => {
+      const dropdown = parent.querySelector('.dropdown-container');
+      if (dropdown) {
+        /*requestAnimationFrame(() => {*/
+          parent.addEventListener('mouseenter', () => {dropdown.classList.add('open');});
+          parent.addEventListener('mouseleave', () => {dropdown.classList.remove('open');});
+        /*});*/
+      }
     });
     const templateContact = templateDoc.querySelector('template#contact').content
     document.getElementById('contact-shared').appendChild(templateContact.cloneNode(true));
@@ -75,11 +91,12 @@ fetch('./shared.html')
           evt.preventDefault();
           if (section) scrollToSection(section);
         }
-        // Cross-page: let browser navigate, handled on load
       });
     });
     document.documentElement.classList.add('styles-loaded');
     observeNav();
+    fetchDone = true;
+    if (document.readyState === 'complete' && currentSection) requestAnimationFrame(() => scrollToSection(currentSection));
   })
   .catch(error => console.error('Error loading template:', error));
 
