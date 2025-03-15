@@ -6,11 +6,14 @@ fetch('./shared.html')
     document.head.appendChild(templateHead.cloneNode(true));
     const templateHeader = templateDoc.querySelector('template#header').content;
     document.getElementById('header-shared').appendChild(templateHeader.cloneNode(true));
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('nav a');
+    const currentPath = window.location.pathname;
+    let currentPage = currentPath === '/' || currentPath === '' ? 'index.html' : currentPath.split('/').pop();
+    currentPage = currentPage.endsWith('.html') ? currentPage : currentPage + '.html';
+    const navLinks = document.querySelectorAll('ul.parent-ul > li > a');
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
-        if (href === currentPage) {
+        const hrefBase = href.split('?')[0];
+        if (hrefBase === currentPage) {
             link.classList.add('active');
             link.setAttribute('aria-current', 'page');
             link.parentElement.classList.add('no-pipe');
@@ -63,11 +66,39 @@ fetch('./shared.html')
         requestAnimationFrame(() => {container.style.display = '';});
       });
     });*/
+    document.querySelectorAll('a[href*="?section="]').forEach(link => {
+      link.addEventListener('click', (evt) => {
+        const href = link.getAttribute('href');
+        const section = getQueryParam(href, 'section');
+        const path = href.split('?')[0];
+        if (path === currentPage) {
+          evt.preventDefault();
+          if (section) scrollToSection(section);
+        }
+        // Cross-page: let browser navigate, handled on load
+      });
+    });
     document.documentElement.classList.add('styles-loaded');
     observeNav();
   })
   .catch(error => console.error('Error loading template:', error));
 
+function getQueryParam(url, param) {
+  const params = new URLSearchParams(url.split('?')[1] || '');
+  return params.get(param);
+}
+function scrollToSection(sectionId) {
+  const element = document.getElementById(sectionId);
+  if (element) {
+      const header = document.querySelector('#header-shared');
+      const offset = header ? header.offsetHeight : 0;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+      });
+  }
+}
 function observeNav() {
   const decoration = document.getElementById("nav-decoration");
   const spacer = document.getElementById("shrinking-spacer");
