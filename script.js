@@ -87,64 +87,13 @@ fetch('./shared.html')
     });
     document.documentElement.classList.add('styles-loaded');
     observeNav();
-    waitForPageReady(currentSection, () => {
-      scrollToSection(currentSection);
-      /*setTimeout(() => {
-          dropdownParents.forEach(parent => {
-              const dropdown = parent.querySelector('.dropdown-container');
-              if (dropdown) {
-                  parent.addEventListener('mouseenter', () => {
-                      console.log('Mouseenter fired');
-                      dropdown.classList.add('open');
-                  });
-                  parent.addEventListener('mouseleave', () => {
-                      dropdown.classList.remove('open');
-                  });
-              }
-          });
-      }, 500);*/
-    });
+    scrollToSection(currentSection);
   })
   .catch(error => console.error('Error loading template:', error));
 
 function getQueryParam(url, param) {
   const params = new URLSearchParams(url.split('?')[1] || '');
   return params.get(param);
-}
-function waitForPageReady(currentSection, callback) {
-  let headDone = false;
-  let headerDone = false;
-  const headObserver = new MutationObserver((mutations, obs) => {
-    console.log('Head mutation detected');
-    if (document.querySelector('link[href="styles.css"]')) {
-        headDone = true;
-        console.log('Head ready (styles.css detected)');
-        obs.disconnect();
-        if (headerDone && currentSection) callback();
-    }
-  });
-  const headerObserver = new MutationObserver((mutations, obs) => {
-      console.log('Header mutation detected');
-      const header = document.querySelector('#header-shared');
-      if (header && header.offsetHeight > 0) {
-          headerDone = true;
-          console.log('Header ready, height:', header.offsetHeight);
-          obs.disconnect();
-          if (headDone && currentSection) callback();
-      }
-  });
-  const headerContainer = document.getElementById('header-shared');
-  headObserver.observe(document.head, {childList:true, subtree:true});
-  headerObserver.observe(headerContainer, {childList:true, subtree:true});
-  // Fallback: check if already done
-  if (document.querySelector('link[href="styles.css"]')) headDone = true;
-  if (headerContainer.offsetHeight > 0) headerDone = true;
-  if (headDone && headerDone && currentSection) {
-      console.log('bing');
-      headObserver.disconnect();
-      headerObserver.disconnect();
-      callback();
-  }
 }
 function scrollToSection(sectionId) {
   const element = document.getElementById(sectionId);
