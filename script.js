@@ -1,9 +1,3 @@
-let fetchDone = false;
-const currentSection = getQueryParam(window.location.href, 'section');
-window.addEventListener('load', () => {
-  if (fetchDone && currentSection) {requestAnimationFrame(() => scrollToSection(currentSection));}
-});
-
 fetch('./shared.html')
   .then(response => response.text())
   .then(data => {
@@ -15,6 +9,7 @@ fetch('./shared.html')
     const currentPath = window.location.pathname;
     let currentPage = currentPath === '/' || currentPath === '' ? 'index.html' : currentPath.split('/').pop();
     currentPage = currentPage.endsWith('.html') ? currentPage : currentPage + '.html';
+    const currentSection = getQueryParam(window.location.href, 'section');
     const navLinks = document.querySelectorAll('ul.parent-ul > li > a');
     navLinks.forEach(link => {
       const href = link.getAttribute('href');
@@ -74,14 +69,6 @@ fetch('./shared.html')
     const webUrlLinks = document.getElementsByClassName('webUrlLink');
     l = webUrlLinks.length;
     for (i=0; i<l; i++) {webUrlLinks[i].href = `https://${webUrl}`;}
-    /*const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
-    dropdownLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        const container = this.closest('.dropdown-container');
-        container.style.display = 'none';
-        requestAnimationFrame(() => {container.style.display = '';});
-      });
-    });*/
     document.querySelectorAll('a[href*="?section="]').forEach(link => {
       link.addEventListener('click', (evt) => {
         const href = link.getAttribute('href');
@@ -95,8 +82,23 @@ fetch('./shared.html')
     });
     document.documentElement.classList.add('styles-loaded');
     observeNav();
-    fetchDone = true;
-    if (document.readyState === 'complete' && currentSection) requestAnimationFrame(() => scrollToSection(currentSection));
+    waitForPageReady(currentSection, () => {
+      scrollToSection(currentSection);
+      /*setTimeout(() => {
+          dropdownParents.forEach(parent => {
+              const dropdown = parent.querySelector('.dropdown-container');
+              if (dropdown) {
+                  parent.addEventListener('mouseenter', () => {
+                      console.log('Mouseenter fired');
+                      dropdown.classList.add('open');
+                  });
+                  parent.addEventListener('mouseleave', () => {
+                      dropdown.classList.remove('open');
+                  });
+              }
+          });
+      }, 500);*/
+    });
   })
   .catch(error => console.error('Error loading template:', error));
 
@@ -104,16 +106,51 @@ function getQueryParam(url, param) {
   const params = new URLSearchParams(url.split('?')[1] || '');
   return params.get(param);
 }
+function waitForPageReady(currentSection, callback) {
+  let headDone = false;
+  let headerDone = false;
+  const headObserver = new MutationObserver((mutations, obs) => {
+    console.log('Head mutation detected');
+    if (document.querySelector('link[href="styles.css"]')) {
+        headDone = true;
+        console.log('Head ready (styles.css detected)');
+        obs.disconnect();
+        if (headerDone && currentSection) callback();
+    }
+  });
+  const headerObserver = new MutationObserver((mutations, obs) => {
+      console.log('Header mutation detected');
+      const header = document.querySelector('#header-shared');
+      if (header && header.offsetHeight > 0) {
+          headerDone = true;
+          console.log('Header ready, height:', header.offsetHeight);
+          obs.disconnect();
+          if (headDone && currentSection) callback();
+      }
+  });
+  const headerContainer = document.getElementById('header-shared');
+  headObserver.observe(document.head, {childList:true, subtree:true});
+  headerObserver.observe(headerContainer, {childList:true, subtree:true});
+  // Fallback: check if already done
+  if (document.querySelector('link[href="styles.css"]')) headDone = true;
+  if (headerContainer.offsetHeight > 0) headerDone = true;
+  if (headDone && headerDone && currentSection) {
+      console.log('bing');
+      headObserver.disconnect();
+      headerObserver.disconnect();
+      callback();
+  }
+}
 function scrollToSection(sectionId) {
   const element = document.getElementById(sectionId);
   if (element) {
-      const header = document.querySelector('#header-shared');
-      const offset = header ? header.offsetHeight : 0;
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-          top: elementPosition - offset,
-          behavior: 'smooth'
-      });
+    const header = document.querySelector('#header-shared');
+    const offset = header ? header.offsetHeight : 0;
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: elementPosition - offset,
+      behavior: 'smooth'
+    });
   }
 }
 function observeNav() {
