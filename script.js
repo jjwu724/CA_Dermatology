@@ -6,91 +6,116 @@ document.head.appendChild(link);
 fetch('./shared.html')
   .then(response => response.text())
   .then(data => {
-    const templateDoc = new DOMParser().parseFromString(data, 'text/html');
-    const templateHead = templateDoc.querySelector('template#head').content
-    document.head.appendChild(templateHead.cloneNode(true));
-    const templateHeader = templateDoc.querySelector('template#header').content;
-    document.getElementById('header-shared').appendChild(templateHeader.cloneNode(true));
     const currentPath = window.location.pathname;
     let currentPage = currentPath === '/' || currentPath === '' ? 'index.html' : currentPath.split('/').pop();
     currentPage = currentPage.endsWith('.html') ? currentPage : currentPage + '.html';
-    const currentSection = getQueryParam(window.location.href, 'section');
-    const navLinks = document.querySelectorAll('ul.parent-ul > li > a');
-    navLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      const hrefBase = href.split('?')[0];
-      if (hrefBase === currentPage) {
-        link.classList.add('active');
-        link.setAttribute('aria-current', 'page');
-        link.parentElement.classList.add('no-pipe');
-      }
-    });
-    const dropdownParents = document.querySelectorAll('.dropdown-parent');
-    dropdownParents.forEach(parent => {
-      const dropdown = parent.querySelector('.dropdown-container');
-      if (dropdown) {
-        /*requestAnimationFrame(() => {*/
-          parent.addEventListener('mouseenter', () => {dropdown.classList.add('open');});
-          parent.addEventListener('mouseleave', () => {dropdown.classList.remove('open');});
-        /*});*/
-      }
-    });
-    const templateContact = templateDoc.querySelector('template#contact').content
-    document.getElementById('contact-shared').appendChild(templateContact.cloneNode(true));
-    const computedStyle = getComputedStyle(document.documentElement);
-    const areaCode = computedStyle.getPropertyValue('--area-code').slice(1, -1);
-    const phoneNumber = computedStyle.getPropertyValue('--phone-number').slice(1, -1);
-    const fullPhoneNumber = areaCode + phoneNumber;
-    const email = computedStyle.getPropertyValue('--email').slice(1, -1);
-    const address1 = computedStyle.getPropertyValue('--address-1').slice(1, -1);
-    const address2 = computedStyle.getPropertyValue('--address-2').slice(1, -1);
-    const webUrl = computedStyle.getPropertyValue('--webUrl').slice(1, -1);
-    let i;
-    let l;
-    const phoneLinks = document.getElementsByClassName('phoneLink');
-    l = phoneLinks.length;
-    for (i=0; i<l; i++) {phoneLinks[i].href = "tel:" + fullPhoneNumber;}
-    const areaCodeSpans = document.getElementsByClassName('areaCode');
-    l = areaCodeSpans.length;
-    for (i=0; i<l; i++) {areaCodeSpans[i].textContent = areaCode;}
-    const phoneNumberSpans = document.getElementsByClassName('phoneNumber');
-    l = phoneNumberSpans.length;
-    for (i=0; i<l; i++) {phoneNumberSpans[i].textContent = phoneNumber;}
-    const emailSpans = document.getElementsByClassName('email');
-    l = emailSpans.length;
-    for (i=0; i<l; i++) {emailSpans[i].textContent = email;}
-    const emailLinks = document.getElementsByClassName('emailLink');
-    l = emailLinks.length;
-    for (i=0; i<l; i++) {emailLinks[i].href = `mailto:${email}`;}
-    const address1Spans = document.getElementsByClassName('address-1');
-    l = address1Spans.length;
-    for (i=0; i<l; i++) {address1Spans[i].textContent = address1;}
-    const address2Spans = document.getElementsByClassName('address-2');
-    l = address2Spans.length;
-    for (i=0; i<l; i++) {address2Spans[i].textContent = address2;}
-    const webUrlSpans = document.getElementsByClassName('webUrl');
-    l = webUrlSpans.length;
-    for (i=0; i<l; i++) {webUrlSpans[i].textContent = webUrl;}
-    const webUrlLinks = document.getElementsByClassName('webUrlLink');
-    l = webUrlLinks.length;
-    for (i=0; i<l; i++) {webUrlLinks[i].href = `https://${webUrl}`;}
-    document.querySelectorAll('a[href*="?section="]').forEach(link => {
-      link.addEventListener('click', (evt) => {
-        const href = link.getAttribute('href');
-        const section = getQueryParam(href, 'section');
-        const path = href.split('?')[0];
-        if (path === currentPage) {
-          evt.preventDefault();
-          if (section) scrollToSection(section);
-        }
-      });
-    });
+    const canHover = window.matchMedia('(hover: hover)').matches;
+    appendTemplate(data);
+    insertInfo();
+    flagActive(currentPage);
+    addDropdownListeners(canHover);
+    addLinkListeners(currentPage, canHover);
     document.documentElement.classList.add('styles-loaded');
     observeNav();
-    scrollToSection(currentSection);
+    const incomingSection = getQueryParam(window.location.href, 'section');
+    requestAnimationFrame(() => {scrollToSection(incomingSection);});
   })
   .catch(error => console.error('Error loading template:', error));
-
+function appendTemplate(data) {
+  const templateDoc = new DOMParser().parseFromString(data, 'text/html');
+  const templateHead = templateDoc.querySelector('template#head').content
+  document.head.appendChild(templateHead.cloneNode(true));
+  const templateHeader = templateDoc.querySelector('template#header').content;
+  document.getElementById('header-shared').appendChild(templateHeader.cloneNode(true));
+  const templateContact = templateDoc.querySelector('template#contact').content
+  document.getElementById('contact-shared').appendChild(templateContact.cloneNode(true));
+}
+function insertInfo() {
+  const computedStyle = getComputedStyle(document.documentElement);
+  const areaCode = computedStyle.getPropertyValue('--area-code').slice(1, -1);
+  const phoneNumber = computedStyle.getPropertyValue('--phone-number').slice(1, -1);
+  const fullPhoneNumber = areaCode + phoneNumber;
+  const email = computedStyle.getPropertyValue('--email').slice(1, -1);
+  const address1 = computedStyle.getPropertyValue('--address-1').slice(1, -1);
+  const address2 = computedStyle.getPropertyValue('--address-2').slice(1, -1);
+  const webUrl = computedStyle.getPropertyValue('--webUrl').slice(1, -1);
+  let i;
+  let l;
+  const phoneLinks = document.getElementsByClassName('phoneLink');
+  l = phoneLinks.length;
+  for (i=0; i<l; i++) {phoneLinks[i].href = "tel:" + fullPhoneNumber;}
+  const areaCodeSpans = document.getElementsByClassName('areaCode');
+  l = areaCodeSpans.length;
+  for (i=0; i<l; i++) {areaCodeSpans[i].textContent = areaCode;}
+  const phoneNumberSpans = document.getElementsByClassName('phoneNumber');
+  l = phoneNumberSpans.length;
+  for (i=0; i<l; i++) {phoneNumberSpans[i].textContent = phoneNumber;}
+  const emailSpans = document.getElementsByClassName('email');
+  l = emailSpans.length;
+  for (i=0; i<l; i++) {emailSpans[i].textContent = email;}
+  const emailLinks = document.getElementsByClassName('emailLink');
+  l = emailLinks.length;
+  for (i=0; i<l; i++) {emailLinks[i].href = `mailto:${email}`;}
+  const address1Spans = document.getElementsByClassName('address-1');
+  l = address1Spans.length;
+  for (i=0; i<l; i++) {address1Spans[i].textContent = address1;}
+  const address2Spans = document.getElementsByClassName('address-2');
+  l = address2Spans.length;
+  for (i=0; i<l; i++) {address2Spans[i].textContent = address2;}
+  const webUrlSpans = document.getElementsByClassName('webUrl');
+  l = webUrlSpans.length;
+  for (i=0; i<l; i++) {webUrlSpans[i].textContent = webUrl;}
+  const webUrlLinks = document.getElementsByClassName('webUrlLink');
+  l = webUrlLinks.length;
+  for (i=0; i<l; i++) {webUrlLinks[i].href = `https://${webUrl}`;}
+}
+function flagActive(currentPage) {
+  const navLinks = document.querySelectorAll('ul.parent-ul > li > a');
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    const hrefBase = getHrefBase(href);
+    if (hrefBase === currentPage) {
+      link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
+      link.parentElement.classList.add('no-pipe');
+    }
+  });
+}
+function getHrefBase(href) {
+  return href.split('?')[0];
+}
+function addDropdownListeners(canHover) {
+  const dropdownParents = document.querySelectorAll('.dropdown-parent');
+  dropdownParents.forEach(parent => {
+    const dropdownContainer = parent.querySelector('.dropdown-container');
+    if (dropdownContainer) {
+      if (canHover) {
+        parent.addEventListener('mouseenter', () => {dropdownContainer.classList.add('open');});
+        parent.addEventListener('mouseleave', () => {dropdownContainer.classList.remove('open');});
+      } else parent.addEventListener('click',
+        (evt) => {
+          if (evt.target.parentElement === parent && !dropdownContainer.classList.contains('open')) {
+            evt.preventDefault();
+            dropdownContainer.classList.add('open');
+          }
+        });
+    }
+  });
+}
+function addLinkListeners(currentPage, canHover) {
+  document.querySelectorAll('a[href*="?section="]').forEach(link => {
+    link.addEventListener('click', (evt) => {
+      const href = link.getAttribute('href');
+      const section = getQueryParam(href, 'section');
+      const hrefBase = getHrefBase(href);
+      if (hrefBase === currentPage) {
+        evt.preventDefault();
+        if (section) scrollToSection(section);
+        if (!canHover) link.parentElement.parentElement.parentElement.classList.remove('open');
+      }
+    });
+  });
+}
 function getQueryParam(url, param) {
   const params = new URLSearchParams(url.split('?')[1] || '');
   return params.get(param);

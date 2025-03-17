@@ -272,9 +272,6 @@ section {
   font-family: "Roboto Flex", sans-serif;
   font-size: var(--section-font-size);
 }
-.jump-offset {
-  scroll-margin-top: calc(var(--header-height) + var(--nav-height) + var(--nav2-offset) + var(--section-font-size));
-}
 h2 {
   font-family: Verdana, sans-serif;
   font-size: calc(.4 * var(--header-height));
