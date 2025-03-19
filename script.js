@@ -18,7 +18,7 @@ fetch('./shared.html')
     document.documentElement.classList.add('styles-loaded');
     observeNav();
     const incomingSection = getQueryParam(window.location.href, 'section');
-    requestAnimationFrame(() => {scrollToSection(incomingSection);});
+    if (incomingSection) setTimeout(() => {scrollToSection(incomingSection);}, 200);
   })
   .catch(error => console.error('Error loading template:', error));
 function appendTemplate(data) {
@@ -96,6 +96,10 @@ function addDropdownListeners(canHover) {
         (evt) => {
           if (evt.target.parentElement === parent && !dropdownContainer.classList.contains('open')) {
             evt.preventDefault();
+            dropdownParents.forEach(otherParent => {
+              const otherDropdown = otherParent.querySelector('.dropdown-container');
+              if (otherDropdown && otherDropdown !== dropdownContainer) otherDropdown.classList.remove('open');
+            });
             dropdownContainer.classList.add('open');
           }
         });
@@ -126,8 +130,10 @@ function scrollToSection(sectionId) {
     const header = document.querySelector('#header-shared');
     const offset = header ? header.offsetHeight : 0;
     const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    const topToScroll = elementPosition - offset;
+    console.log(offset + " ," + elementPosition + ", " + topToScroll);
     window.scrollTo({
-      top: elementPosition - offset,
+      top: topToScroll,
       behavior: 'smooth'
     });
   }
