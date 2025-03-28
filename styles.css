@@ -239,11 +239,23 @@ nav #icon-container img {
   margin-top: var(--thick-line);
   left: calc(.35 * var(--header-font-size));
 }
-/*.dropdown-parent:hover .dropdown-container {display: flex;}*/
 .dropdown-container.open {display: flex;}
 .nth-column li {
   border-left: none;
 }
+.dropdown-menu li.first-alt {
+  border-top: var(--thick-line) solid var(--dark-color);
+}
+.dropdown-menu li.alt {
+  background-color: var(--shadow-color);
+  border-bottom: var(--thick-line) solid var(--dark-color);
+}
+.dropdown-menu li.alt a::before {
+  content: "\25C6";
+  font-size: 0.65em;
+  left: calc(.26 * var(--header-font-size));
+}
+
 #nav-shared2 {
   display: none;
   justify-content: center;
@@ -271,6 +283,16 @@ section {
   box-shadow: 0 0 1vh rgba(0, 0, 0, 0.25);
   font-family: "Roboto Flex", sans-serif;
   font-size: var(--section-font-size);
+}
+.wideImg {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  border-left: 5px solid #e0e0e0;
+  border-right: 5px solid #e0e0e0;
+}
+.afterImgP {
+  margin-top: calc(.25* var(--section-padding));
 }
 h2 {
   font-family: Verdana, sans-serif;

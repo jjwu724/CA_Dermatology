@@ -10,11 +10,13 @@ fetch('./shared.html')
     let currentPage = currentPath === '/' || currentPath === '' ? 'index.html' : currentPath.split('/').pop();
     currentPage = currentPage.endsWith('.html') ? currentPage : currentPage + '.html';
     const canHover = window.matchMedia('(hover: hover)').matches;
+    const computedStyle = getComputedStyle(document.documentElement);
     appendTemplate(data);
-    insertInfo();
+    insertInfo(computedStyle);
     flagActive(currentPage);
     addDropdownListeners(canHover);
     addLinkListeners(currentPage, canHover);
+    addWideImgBorders(computedStyle);
     document.documentElement.classList.add('styles-loaded');
     observeNav();
     const incomingSection = getQueryParam(window.location.href, 'section');
@@ -30,8 +32,7 @@ function appendTemplate(data) {
   const templateContact = templateDoc.querySelector('template#contact').content
   document.getElementById('contact-shared').appendChild(templateContact.cloneNode(true));
 }
-function insertInfo() {
-  const computedStyle = getComputedStyle(document.documentElement);
+function insertInfo(computedStyle) {
   const areaCode = computedStyle.getPropertyValue('--area-code').slice(1, -1);
   const phoneNumber = computedStyle.getPropertyValue('--phone-number').slice(1, -1);
   const fullPhoneNumber = areaCode + phoneNumber;
@@ -39,6 +40,7 @@ function insertInfo() {
   const address1 = computedStyle.getPropertyValue('--address-1').slice(1, -1);
   const address2 = computedStyle.getPropertyValue('--address-2').slice(1, -1);
   const webUrl = computedStyle.getPropertyValue('--webUrl').slice(1, -1);
+  const storeUrl = computedStyle.getPropertyValue('--storeUrl').slice(1, -1);
   let i;
   let l;
   const phoneLinks = document.getElementsByClassName('phoneLink');
@@ -68,6 +70,9 @@ function insertInfo() {
   const webUrlLinks = document.getElementsByClassName('webUrlLink');
   l = webUrlLinks.length;
   for (i=0; i<l; i++) {webUrlLinks[i].href = `https://${webUrl}`;}
+  const storeUrlLinks = document.getElementsByClassName('storeUrl');
+  l = storeUrlLinks.length;
+  for (i=0; i<l; i++) {storeUrlLinks[i].href = storeUrl;}
 }
 function flagActive(currentPage) {
   const navLinks = document.querySelectorAll('ul.parent-ul > li > a');
@@ -137,6 +142,27 @@ function scrollToSection(sectionId) {
       behavior: 'smooth'
     });
   }
+}
+function addWideImgBorders(computedStyle) {
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+  const aspectRatio = viewportWidth / viewportHeight;
+  const firstWideImg = document.querySelector('.wideImg');
+  const minThickness = 0;
+  const maxThickness = firstWideImg.getBoundingClientRect().left;
+  const images = document.querySelectorAll('.wideImg');
+  images.forEach(img => {
+    let borderWidth;
+    if (aspectRatio > 2) borderWidth = maxThickness;
+    else if (aspectRatio < 0.5) borderWidth = minThickness;
+    else {
+        const slope = (maxThickness - minThickness) / (2 - 0.5);
+        borderWidth = minThickness + slope * (aspectRatio - 0.5);
+    }
+    console.log(borderWidth);
+    img.style.borderLeftWidth = `${borderWidth}px`;
+    img.style.borderRightWidth = `${borderWidth}px`;
+});
 }
 function observeNav() {
   const decoration = document.getElementById("nav-decoration");
