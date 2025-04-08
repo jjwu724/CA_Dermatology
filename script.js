@@ -111,10 +111,12 @@ function addDropdownListeners(canHover) {
   });
   function open(dropdownContainer) {
     dropdownContainer.classList.add('open');
-    const rect = dropdownContainer.getBoundingClientRect();
-    const overflowRight = rect.right - window.innerWidth;
-    console.log(rect.right + ', ' + window.innerWidth + ', ' + overflowRight);
-    if (overflowRight > 0) dropdownContainer.classList.add('dropdown-right');
+    if (!dropdownContainer.classList.contains('force-left')) {
+      const rect = dropdownContainer.getBoundingClientRect();
+      const overflowRight = rect.right - document.documentElement.clientWidth;
+      console.log(rect.right + ', ' + document.documentElement.clientWidth + ', ' + overflowRight);
+      if (overflowRight > 0) dropdownContainer.classList.add('dropdown-right');
+    }
   }
   function close(menu) {menu.classList.remove('open');}
 }
