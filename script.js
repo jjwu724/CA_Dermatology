@@ -45,7 +45,7 @@ function insertInfo(computedStyle) {
   let l;
   const phoneLinks = document.getElementsByClassName('phoneLink');
   l = phoneLinks.length;
-  for (i=0; i<l; i++) {phoneLinks[i].href = "tel:" + fullPhoneNumber;}
+  for (i=0; i<l; i++) {phoneLinks[i].href = 'tel:' + fullPhoneNumber;}
   const areaCodeSpans = document.getElementsByClassName('areaCode');
   l = areaCodeSpans.length;
   for (i=0; i<l; i++) {areaCodeSpans[i].textContent = areaCode;}
@@ -95,21 +95,28 @@ function addDropdownListeners(canHover) {
     const dropdownContainer = parent.querySelector('.dropdown-container');
     if (dropdownContainer) {
       if (canHover) {
-        parent.addEventListener('mouseenter', () => {dropdownContainer.classList.add('open');});
-        parent.addEventListener('mouseleave', () => {dropdownContainer.classList.remove('open');});
-      } else parent.addEventListener('click',
-        (evt) => {
-          if (evt.target.parentElement === parent && !dropdownContainer.classList.contains('open')) {
-            evt.preventDefault();
-            dropdownParents.forEach(otherParent => {
-              const otherDropdown = otherParent.querySelector('.dropdown-container');
-              if (otherDropdown && otherDropdown !== dropdownContainer) otherDropdown.classList.remove('open');
-            });
-            dropdownContainer.classList.add('open');
-          }
-        });
+        parent.addEventListener('mouseenter', () => {open(dropdownContainer);});
+        parent.addEventListener('mouseleave', () => {close(dropdownContainer);});
+      } else parent.addEventListener('click', (evt) => {
+        if (evt.target.parentElement === parent && !dropdownContainer.classList.contains('open')) {
+          evt.preventDefault();
+          dropdownParents.forEach(otherParent => {
+            const otherDropdown = otherParent.querySelector('.dropdown-container');
+            if (otherDropdown && otherDropdown !== dropdownContainer) close(otherDropdown);
+          });
+          open(dropdownContainer);
+        }
+      });
     }
   });
+  function open(dropdownContainer) {
+    dropdownContainer.classList.add('open');
+    const rect = dropdownContainer.getBoundingClientRect();
+    const overflowRight = rect.right - window.innerWidth;
+    console.log(rect.right + ', ' + window.innerWidth + ', ' + overflowRight);
+    if (overflowRight > 0) dropdownContainer.classList.add('dropdown-right');
+  }
+  function close(menu) {menu.classList.remove('open');}
 }
 function addLinkListeners(currentPage, canHover) {
   document.querySelectorAll('a[href*="?section="]').forEach(link => {
@@ -136,7 +143,6 @@ function scrollToSection(sectionId) {
     const offset = header ? header.offsetHeight : 0;
     const elementPosition = element.getBoundingClientRect().top + window.scrollY;
     const topToScroll = elementPosition - offset;
-    console.log(offset + " ," + elementPosition + ", " + topToScroll);
     window.scrollTo({
       top: topToScroll,
       behavior: 'smooth'
@@ -144,31 +150,33 @@ function scrollToSection(sectionId) {
   }
 }
 function addWideImgBorders(computedStyle) {
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
-  const aspectRatio = viewportWidth / viewportHeight;
   const firstWideImg = document.querySelector('.wideImg');
-  const minThickness = 0;
-  const maxThickness = firstWideImg.getBoundingClientRect().left;
-  const images = document.querySelectorAll('.wideImg');
-  images.forEach(img => {
-    let borderWidth;
-    if (aspectRatio > 2) borderWidth = maxThickness;
-    else if (aspectRatio < 0.5) borderWidth = minThickness;
-    else {
-        const slope = (maxThickness - minThickness) / (2 - 0.5);
-        borderWidth = minThickness + slope * (aspectRatio - 0.5);
-    }
-    console.log(borderWidth);
-    img.style.borderLeftWidth = `${borderWidth}px`;
-    img.style.borderRightWidth = `${borderWidth}px`;
-});
+  if (firstWideImg) {
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const aspectRatio = viewportWidth / viewportHeight;
+    const minThickness = 0;
+    const maxThickness = firstWideImg.getBoundingClientRect().left;
+    const images = document.querySelectorAll('.wideImg');
+    images.forEach(img => {
+      let borderWidth;
+      if (aspectRatio > 2) borderWidth = maxThickness;
+      else if (aspectRatio < 0.5) borderWidth = minThickness;
+      else {
+          const slope = (maxThickness - minThickness) / (2 - 0.5);
+          borderWidth = minThickness + slope * (aspectRatio - 0.5);
+      }
+      img.style.borderLeftWidth = `${borderWidth}px`;
+      img.style.borderRightWidth = `${borderWidth}px`;
+      if (img.dataset.color) img.style.setProperty('--wide-img-avg', img.dataset.color);
+    });
+  }
 }
 function observeNav() {
-  const decoration = document.getElementById("nav-decoration");
-  const spacer = document.getElementById("shrinking-spacer");
-  const nav1 = document.getElementById("nav-shared1");
-  const nav2 = document.getElementById("nav-shared2");
+  const decoration = document.getElementById('nav-decoration');
+  const spacer = document.getElementById('shrinking-spacer');
+  const nav1 = document.getElementById('nav-shared1');
+  const nav2 = document.getElementById('nav-shared2');
   const ul1 = document.getElementById('ul_nav1');
   const ul2 = document.getElementById('ul_nav2');
   let nav1MinWidth;

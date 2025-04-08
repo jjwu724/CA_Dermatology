@@ -31,6 +31,8 @@
   --nav-font-size: var(--header-font-size);
   --nav-corner: calc(.5 * var(--border-radius));
   --nav2-offset: 0px;
+  --dropdown-right-align-left: 0;
+  --dropdown-right-align-right: "auto";
   --icon-gap: calc(.2 * var(--nav-height));
   --main-padding-vertical: calc(.4 * var(--header-height));
   --main-padding-horizontal: calc(2 * var(--main-padding-vertical));
@@ -39,6 +41,7 @@
   --thin-line: .1vh;
   --normal-line: calc(1.25 * var(--thin-line));
   --thick-line: calc(2 * var(--thin-line));
+  --wide-img-avg: #e0e0e0;
 }
 @media (max-width: 84.1vh) {/* logo width + header buttons width + gaps */
   :root {
@@ -47,6 +50,8 @@
     --header-padding: .25vh;
     --nav-height: calc(.8 * var(--header-height));
     --nav-font-size: calc(1.2 * var(--header-font-size));
+    --dropdown-right-align-left: "auto";
+    --dropdown-right-align-right: 0;
     --main-padding-vertical: calc(.2 * var(--header-height));
     --main-padding-horizontal: calc(.24 * var(--header-height));
     --section-padding: calc(1.25 * var(--main-padding-horizontal));
@@ -118,6 +123,7 @@ header {
   backface-visibility: hidden;
 }
 nav {
+  position: relative;
   display: flex;
   justify-content: space-between;
   border-top: var(--thick-line) solid var(--shadow-color);
@@ -204,12 +210,18 @@ nav #icon-container img {
   height: calc(.8* var(--nav-height));
   filter: drop-shadow(0px calc(-.03 * var(--nav-font-size)) 0 black);
 }
+#nav-shared1 {z-index: 2;}
+#nav-shared2 {z-index: 1;}
 .dropdown-container {
   position: absolute;
   display: none;
   align-items: flex-start;
   top: 100%;
   left: 0;
+}
+.dropdown-right {
+  left: var(--dropdown-right-align-left);
+  right: var(--dropdown-right-align-right);
 }
 .dropdown-menu {
   display: block;
@@ -288,8 +300,8 @@ section {
   width: 100%;
   height: auto;
   box-sizing: border-box;
-  border-left: 5px solid #e0e0e0;
-  border-right: 5px solid #e0e0e0;
+  border-left: 5px solid var(--wide-img-avg);
+  border-right: 5px solid var(--wide-img-avg);
 }
 .afterImgP {
   margin-top: calc(.25* var(--section-padding));
