@@ -39,6 +39,7 @@ function insertInfo(computedStyle) {
   const email = computedStyle.getPropertyValue('--email').slice(1, -1);
   const address1 = computedStyle.getPropertyValue('--address-1').slice(1, -1);
   const address2 = computedStyle.getPropertyValue('--address-2').slice(1, -1);
+  const address3 = computedStyle.getPropertyValue('--address-3').slice(1, -1);
   const webUrl = computedStyle.getPropertyValue('--webUrl').slice(1, -1);
   const storeUrl = computedStyle.getPropertyValue('--storeUrl').slice(1, -1);
   let i;
@@ -64,6 +65,9 @@ function insertInfo(computedStyle) {
   const address2Spans = document.getElementsByClassName('address-2');
   l = address2Spans.length;
   for (i=0; i<l; i++) {address2Spans[i].textContent = address2;}
+  const address3Spans = document.getElementsByClassName('address-3');
+  l = address3Spans.length;
+  for (i=0; i<l; i++) {address3Spans[i].textContent = address3;}
   const webUrlSpans = document.getElementsByClassName('webUrl');
   l = webUrlSpans.length;
   for (i=0; i<l; i++) {webUrlSpans[i].textContent = webUrl;}
