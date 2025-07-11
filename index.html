@@ -4,11 +4,19 @@
   <title>California Dermatology - About Us</title>
   <style>img {opacity: 0;}</style>
   <style>
+    .staff {
+      --profile-pic-width: calc(2 * var(--header-height));
+      --profile-gap-right: calc(var(--profile-pic-width) * .15);
+      --profile-gap-bottom: calc(var(--profile-pic-width) * .05);
+      --pub-width: var(--profile-pic-width);
+      --video-width: calc(2 * var(--pub-width));
+      --video-padding: var(--section-padding);
+    }
     .twoImgContainer {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: calc(.5* var(--section-padding));
+      gap: var(--section-padding-half);
     }
     .twoImgContainer img {
       height: auto;
@@ -19,23 +27,46 @@
     .afterImgP {
       margin-top: calc(.25* var(--section-padding));
     }
-    .staff {
-      --profile-pic-width: calc(2 * var(--header-height));
-    }
-    @media (max-width: 84.1vh) {
-      .staff {
-        --profile-pic-width: calc(3 * var(--header-height));
-      }
-    }
     .profilePicture {
       width: var(--profile-pic-width);
       height: auto;
       float: left;
-      margin-right: 20px;
+      margin-right: var(--profile-gap-right);
+      margin-bottom: var(--profile-gap-bottom);
       border: var(--thin-line) solid black;
     }
-    .profileText {
+    .profileP {
       text-align: justify;
+    }
+    ul {
+      margin-top: var(--section-padding-quarter);
+      margin-bottom: var(--section-padding-quarter);
+      padding-left: var(--section-padding);
+    }
+    .logo-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--pub-width), 1fr)); align-items: center;
+      gap: calc(2 * var(--section-padding));
+      padding: var(--section-padding) var(--section-padding) var(--section-padding-double) var(--section-padding);
+    }
+    .media-logo-img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    .vimeoVideo {
+      aspect-ratio: 4/3;
+      width: var(--video-width);
+      height: auto;
+      padding-left: var(--video-padding);
+    }
+    @media (max-width: 84.1vh) {
+      .staff {
+        --profile-pic-width: calc(3 * var(--header-height));
+        --pub-width: calc(1.5 * var(--header-height));
+        --video-width: 100%;
+        --video-padding: 0;
+      }
     }
   </style>
   <script type="module" src="script.js"></script>
@@ -68,9 +99,46 @@
       <h2>Jashin J. Wu, M.D., F.A.A.D.</h2>
       <hr>
       <img src="img/Jashin_Wu.webp" class="profilePicture" alt="Photo of Jashin Wu">
-      <p class="profileText">Through the 7-year Honors Program in Medical Education, Jashin J. Wu, M.D., F.A.A.D., earned a BA in biological sciences from Northwestern University in Evanston, Illinois and an MD from Northwestern University Medical School in Chicago. Dr. Wu completed dermatology residency at the University of California, Irvine, California, where he was chief resident.</p>
+      <p class="profileP">Jashin J. Wu, M.D., F.A.A.D., is Founder, Medical Director, and Principal Investigator at California Dermatology and Voluntary Professor at the Department of Dermatology, University of Miami Miller School of Medicine. He is a Councilor for the International Psoriasis Council and serves on the Medical Board of the National Psoriasis Foundation.  He served on the American Academy of Dermatology (AAD)/ National Psoriasis Foundation psoriasis guidelines committee, which published updated 6 psoriasis guidelines in 2019-2021.  He is co-editor for 6 textbooks about psoriasis.  He is associate editor for the 4th edition of Comprehensive Dermatologic Drug Therapy.  He has written over 500 Pubmed articles, of which over 300 are about psoriasis, as well as 70 book chapters.  He is Secretary-Treasurer of the Pacific Dermatology Association.  Dr. Wu has given over 200 CME lectures at medical conferences and dermatology departments/divisions in 11 countries on 4 continents. He has been awarded 3 Presidential Citations from the AAD (2016, 2021, 2024).<br>
       <br>
-      <p class="profileText">Dr. Wu is Voluntary Associate Professor at the Department of Dermatology, University of Miami Miller School of Medicine.  He is a Councilor for the International Psoriasis Council.  He served on the American Academy of Dermatology (AAD) / National Psoriasis Foundation psoriasis guidelines committee, which published updated 6 psoriasis guidelines in 2019-2021.  He is editor or co-editor for 6 books which include Therapy for Severe Psoriasis, 1st edition, 2016; Clinical Cases in Psoriasis, 1st edition; Mild-To-Moderate Psoriasis, 3rd edition, 2014; Moderate-To-Severe Psoriasis, 4th edition, 2014.  He is associate editor for the 4th edition of Comprehensive Dermatologic Drug Therapy published in March 2020.  He has written over 500 Pubmed articles, of which over 300 are about psoriasis, as well as 70 book chapters.  His articles have been published in The New England Journal of Medicine, The Lancet, JAMA, Journal of the American Academy of Dermatology, JAMA Dermatology, British Journal of Dermatology, JEADV, and most dermatology journals.  He is Secretary-Treasurer of the Pacific Dermatology Association.  Dr. Wu has given over 200 CME lectures at medical conferences and dermatology departments/divisions in 11 countries on 4 continents.  He has been awarded 3 Presidential Citations from the AAD (2016, 2021, 2024).</p>
+      On a personal level, he is married with 2 sons.  He enjoys following professional tennis, weight-lifting, traveling (he has been to almost 50 countries), and playing pickleball and board games.  Dr. Wu is excited to help you on your journey to better skin!</p>
+      <br>
+      <h2>Reviews</h2>
+      <hr>
+      <p>Dedicated to excellence in patient care, Dr. Wu appreciates honest feedback. Discover what his patients are saying on these leading review platforms:</p>
+      <ul>
+        <li><a href="https://doctor.webmd.com/doctor/jashin-wu-a8fc8e8f-d3f1-4591-b813-c823eb689be6-overview" target="_blank" rel="noopener noreferrer">WebMD</a></li>
+        <li><a href="https://www.healthgrades.com/physician/dr-jashin-wu-3xf9q" target="_blank" rel="noopener noreferrer">Healthgrades</a></li>
+        <li><a href="https://www.vitals.com/doctors/Dr_Jashin_Wu.html" target="_blank" rel="noopener noreferrer">Vitals</a></li>
+        <li><a href="https://www.castleconnolly.com/top-doctors/jashin-j-wu-dermatology-128cc134059" target="_blank" rel="noopener noreferrer">Top Doctors</a></li>
+      </ul>
+      <br>
+      <h2>Publications & Mentions</h2>
+      <hr>
+      <p>Dr. Wu's expertise in dermatology has been recognized by many leading national and local media outlets.</p>
+      <div class="logo-grid">
+        <img src="/img/logo_CBS.svg" alt="CBS News logo" class="media-logo-img">
+        <img src="/img/logo_CNBC.svg" alt="CNBC logo" class="media-logo-img">
+        <img src="/img/logo_Forbes.svg" alt="Forbes logo" class="media-logo-img">
+        <img src="/img/logo_Newsweek.svg" alt="Newsweek logo" class="media-logo-img">
+        <img src="/img/logo_US_News.svg" alt="U.S. News and World Report logo" class="media-logo-img">
+        <img src="/img/logo_Financial_times.svg" alt="Financial Times logo" class="media-logo-img">
+        <img src="/img/logo_Reuters.svg" alt="Reuters logo" class="media-logo-img">
+        <img src="/img/logo_Self.svg" alt="Self Magazine logo" class="media-logo-img">
+        <img src="/img/logo_WebMD.svg" alt="WebMD logo" class="media-logo-img">
+        <img src="/img/logo_DoctorRadio.svg" alt="Doctor Radio logo" class="media-logo-img">
+        <img src="/img/logo_Medscape.svg" alt="Medscape logo" class="media-logo-img">
+        <img src="/img/logo_MedPage Today.svg" alt="MedPage Today logo" class="media-logo-img">
+        <img src="/img/logo_Dermatology_Times.svg" alt="Dermatology Times logo" class="media-logo-img">
+        <img src="/img/logo_DermWorld.svg" alt="DermWorld logo" class="media-logo-img">
+        <img src="/img/logo_Practical_Dermatology.svg" alt="Practical Dermatology logo" class="media-logo-img">
+        <img src="/img/logo_The_Dermatologist.svg" alt="The Dermatologist logo" class="media-logo-img">
+        <img src="/img/logo_Biopharm_Insight.svg" alt="BioPharm Insight logo" class="media-logo-img">
+      </div>
+      <h2>Media Appearances</h2>
+      <hr>
+      <iframe class="vimeoVideo" src="https://player.vimeo.com/video/1100753541?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" title="Dr. Jashin Wu - KCBS2 - Psoriasis and Heart Attacks - 08-20-12"></iframe>
+      <iframe class="vimeoVideo" src="https://player.vimeo.com/video/1100753549?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" title="Dr. Jashin Wu - WCAX3 - Psoriasis and Heart Attacks - 08-20-12"></iframe>
     </section>
     <section id="contact-shared"></section>
   </main>

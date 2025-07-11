@@ -37,6 +37,9 @@
   --main-padding-vertical: calc(.4 * var(--header-height));
   --main-padding-horizontal: calc(2 * var(--main-padding-vertical));
   --section-padding: var(--main-padding-vertical);
+  --section-padding-half: calc(.5 * (var(--section-padding)));
+  --section-padding-quarter: calc(.25 * (var(--section-padding)));
+  --section-padding-double: calc(2 * (var(--section-padding)));
   --section-font-size: calc(1.2 * var(--header-font-size));
   --thin-line: .1vh;
   --normal-line: calc(1.25 * var(--thin-line));
@@ -288,10 +291,10 @@ main > *:not(:last-child) {
 }
 section {
   background-color: #fefefe;
-  padding-top: calc(.5 * var(--section-padding));
+  padding-top: var(--section-padding-half);
   padding-left: var(--section-padding);
   padding-right: var(--section-padding);
-  padding-bottom: var(--section-padding);
+  padding-bottom: calc(.7 * var(--section-padding));
   box-shadow: 0 0 1vh rgba(0, 0, 0, 0.25);
   font-family: "Roboto Flex", sans-serif;
   font-size: var(--section-font-size);
