@@ -312,6 +312,7 @@ section {
 h2 {
   font-family: Verdana, sans-serif;
   font-size: calc(.4 * var(--header-height));
+  color: var(--shadow-color);
   margin: 0;
 }
 h4 {
