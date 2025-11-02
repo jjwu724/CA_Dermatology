@@ -1,0 +1,5 @@
+# Force www → non-www
+https://www.caderm.net/*   https://caderm.net/:splat   301
+
+# QR tracking redirects
+/bc1   /index.html?bc1   301
