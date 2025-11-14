@@ -41,7 +41,8 @@ function insertInfo(computedStyle) {
   const address2 = computedStyle.getPropertyValue('--address-2').slice(1, -1);
   const address3 = computedStyle.getPropertyValue('--address-3').slice(1, -1);
   const webUrl = computedStyle.getPropertyValue('--webUrl').slice(1, -1);
-  const storeUrl = computedStyle.getPropertyValue('--storeUrl').slice(1, -1);
+  const aireStoreUrl = computedStyle.getPropertyValue('--store-aire-url').slice(1, -1);
+  const revianStoreUrl = computedStyle.getPropertyValue('--store-revian-url').slice(1, -1);
   let i;
   let l;
   const phoneLinks = document.getElementsByClassName('phoneLink');
@@ -74,9 +75,12 @@ function insertInfo(computedStyle) {
   const webUrlLinks = document.getElementsByClassName('webUrlLink');
   l = webUrlLinks.length;
   for (i=0; i<l; i++) {webUrlLinks[i].href = `https://${webUrl}`;}
-  const storeUrlLinks = document.getElementsByClassName('storeUrl');
-  l = storeUrlLinks.length;
-  for (i=0; i<l; i++) {storeUrlLinks[i].href = storeUrl;}
+  const aireUrlLinks = document.getElementsByClassName('store-aire');
+  l = aireUrlLinks.length;
+  for (i=0; i<l; i++) {aireUrlLinks[i].href = aireStoreUrl;}
+  const revianUrlLinks = document.getElementsByClassName('store-revian');
+  l = revianUrlLinks.length;
+  for (i=0; i<l; i++) {revianUrlLinks[i].href = revianStoreUrl;}
 }
 function flagActive(currentPage) {
   const navLinks = document.querySelectorAll('ul.parent-ul > li > a');

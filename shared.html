@@ -14,7 +14,8 @@
       --address-3: "Corona, CA 92882";
       --email: "info@caderm.net";
       --webUrl: "www.caderm.net";
-      --storeUrl: "https://www.airehealth.com/DrJashinWu";
+      --store-aire-url: "https://www.airehealth.com/DrJashinWu";
+      --store-revian-url: "https://hair.revian.com/?code=californiaderm";
     }
   </style>
 </template>
@@ -44,7 +45,14 @@
         <ul class="parent-ul" id="ul_nav1">
           <li><a href="index.html">About Us</a></li>
           <li><a href="office.html">Our Office</a></li>
-          <li><a class="storeUrl" target="_blank">Our Store</a></li>
+          <li class="dropdown-parent"><span class="dropdown-parent-linkless-text">Our Stores</span>
+            <div class="dropdown-container">
+              <ul class="dropdown-menu">
+                <li><a class="store-aire" target="_blank">AIRE Health Store</a></li>
+                <li><a class="store-revian" target="_blank">REVIAN Store</a></li>
+              </ul>
+            </div>
+          </li>
           <li><a href="patients.html">For Patients</a></li>
           <li class="dropdown-parent"><a href="medical.html">Medical</a>
             <div class="dropdown-container force-left">
@@ -154,7 +162,7 @@
 <template id="contact">
   <h2>Contact Us</h2><hr>
   <address>
-    <span class="contact-label">Opening Date:</span> December 2025<br>
+    <span class="contact-label">Opening Date:</span> January 13, 2026<br>
     <span class="contact-label">Phone:</span> <a class="phoneLink" href=""><span class="areaCode"></span> <span class="phoneNumber"></span></a><br>
     <span class="contact-label">Email:</span> <a class="emailLink" href=""><span class="email"></span></a><br>
     <span class="contact-label">Website:</span> <a class="webUrlLink" href=""><span class="webUrl"></span></a><br>

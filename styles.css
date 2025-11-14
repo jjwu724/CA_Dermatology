@@ -8,7 +8,7 @@
   --highlight: #ffffff;
   --gradient-top: #f4f4f4;
   --gradient-bottom: #eeeeee;
-  --base-color: #395FC7;
+  --base-color: #395FC6;
   --light-color: #6688FF;
   --off-white-color: #ebefff;
   --medium-color: #2F52A8;
@@ -176,6 +176,10 @@ nav ul li {
 .parent-ul > li:not(.no-pipe):not(:has(+ .no-pipe))::after {
   right: calc(-1 * var(--thin-line)); 
 }
+.dropdown-parent-linkless-text {
+  user-select: none;
+}
+nav li .dropdown-parent-linkless-text,
 nav li a {
   display: flex;
   align-items: center;
