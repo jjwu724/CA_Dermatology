@@ -17,6 +17,35 @@
       --store-aire-url: "https://www.airehealth.com/DrJashinWu";
       --store-revian-url: "https://hair.revian.com/?code=californiaderm";
     }
+    #contact-container {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: var(--section-padding);
+    }
+    #contact-info {
+      flex: 0 0 auto;
+      width: fit-content;
+    }
+    #address-row {
+      display: flex;
+      align-items: flex-start;
+    }
+    #address-block {
+      margin-left: var(--section-padding-eighth);
+    }
+    #contact-map {
+        flex: 1;
+        position: relative; /* Anchor for the absolute iframe */
+        min-height: 0;
+    }
+    #contact-map iframe {
+        position: absolute; /* This 'absolute' positioning removes the iframe from height calculations, allowing it to simply fill the space provided by the address block. */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
   </style>
 </template>
 <template id="header">
@@ -161,10 +190,27 @@
 </template>
 <template id="contact">
   <h2>Contact Us</h2><hr>
-  <address>
-    <span class="contact-label">Phone:</span> <a class="phoneLink" href=""><span class="areaCode"></span> <span class="phoneNumber"></span></a><br>
-    <span class="contact-label">Email:</span> <a class="emailLink" href=""><span class="email"></span></a><br>
-    <span class="contact-label">Website:</span> <a class="webUrlLink" href=""><span class="webUrl"></span></a><br>
-    <span class="contact-label">Address:</span> <span class="address-1"></span>, <span class="address-2"></span>, <span class="address-3"></span><br>
-  </address>
+  <div id="contact-container">
+    <address id="contact-info">
+      <span class="contact-label">Phone:</span> <a class="phoneLink" href=""><span class="areaCode"></span> <span class="phoneNumber"></span></a><br>
+      <span class="contact-label">Email:</span> <a class="emailLink" href=""><span class="email"></span></a><br>
+      <span class="contact-label">Website:</span> <a class="webUrlLink" href=""><span class="webUrl"></span></a><br>
+      <div id="address-row">
+        <span class="contact-label">Address:</span>
+        <div id="address-block">
+          <span class="address-1"></span><br>
+          <span class="address-2"></span><br>
+          <span class="address-3"></span>
+        </div>
+      </div>
+    </address>
+    <div id="contact-map">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13250.462400125842!2d-117.58743141284181!3d33.8737962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcc9a5bbd255cb%3A0xdf74b243f7c2505!2sCalifornia%20Dermatology!5e0!3m2!1sen!2sus!4v1773173562206!5m2!1sen!2sus" 
+        style="border:0; width:100%; height:100%;" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
 </template>

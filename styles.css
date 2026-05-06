@@ -39,6 +39,7 @@
   --section-padding: var(--main-padding-vertical);
   --section-padding-half: calc(.5 * (var(--section-padding)));
   --section-padding-quarter: calc(.25 * (var(--section-padding)));
+  --section-padding-eighth: calc(.125 * (var(--section-padding)));
   --section-padding-double: calc(2 * (var(--section-padding)));
   --section-font-size: calc(1.2 * var(--header-font-size));
   --thin-line: .1vh;
