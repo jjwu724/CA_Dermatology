@@ -47,7 +47,7 @@ function insertInfo(computedStyle) {
   let l;
   const phoneLinks = document.getElementsByClassName('phoneLink');
   l = phoneLinks.length;
-  for (i=0; i<l; i++) {phoneLinks[i].href = 'tel:' + fullPhoneNumber;}
+  for (i=0; i<l; i++) {phoneLinks[i].href = 'tel:+1' + fullPhoneNumber.replace(/\D/g, '');}
   const areaCodeSpans = document.getElementsByClassName('areaCode');
   l = areaCodeSpans.length;
   for (i=0; i<l; i++) {areaCodeSpans[i].textContent = areaCode;}
